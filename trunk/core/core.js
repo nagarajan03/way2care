@@ -57,10 +57,8 @@ var Menu = Backbone.View.extend({
     },
     
     onClick: function( e ) {
-        alert("XCVXVXCVxcvxcv");
         // uncomment this row to make it work!
-        //router.navigate('/');
-        
+        //router.navigate('/'); 
     }
 
 });
