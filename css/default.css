@@ -121,14 +121,13 @@ position:absolute;
 z-index: 12;
 right:0px;
 top:50px;
-border:1px solid red;
 height:auto;
 
 }
 
 #right-side-menu .top-right-corner{
-	border:solid #000 1px;
-	width:150px;
+	border:solid #7B7A80 1px;
+	width:180px;
 	position:relative;
 	float:right;
 	margin-right: 0px;
@@ -142,7 +141,7 @@ text-align:center;
 
 #right-side-menu .top-right-corner ul li{
 	list-style:none;
-	border:solid #000 1px;
+	border:solid #7B7A80 1px;
 }
 #right-side-menu .top-right-corner ul li a
 {
@@ -152,6 +151,8 @@ text-align:center;
     font-weight:bold;
     color:#FFFFFF;
     padding:0 0px 0 0px;
+	height: 30px;
+    padding-top: 6px;
 }
 
 #right-side-menu .bottom-right-corner{
