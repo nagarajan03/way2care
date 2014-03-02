@@ -10,12 +10,27 @@
     <script type="text/javascript" src="lib/underscore-min.js"></script>
     <script type="text/javascript" src="lib/backbone-min.js"></script>
     <script type="text/javascript" src="core/core.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(e) {
+        $('.top-menu-botton').bind('click',function(){
+		   $('.top-menu-content').slideToggle(1000);	
+		});  
+      });
+    </script>
 </head>
 <body>
 <div id="warapper">
 <!-- Header menu -->
  <div id="top-header">
-
+    <div class="top-menu-content">
+      <ul>
+         <li><a href="#">Home</a></li>
+         <li><a href="#">About Us</a></li>
+         <li><a href="#">Blog</a></li>
+         <li><a href="#">Contact</a></li>
+      </ul>
+    </div>	
+    <div class="top-menu-botton">MENU</div>
  </div>
  
  <!-- right side menu -->
@@ -37,8 +52,6 @@
   <img src="assets/images/abstract_color_background_picture_8016-wide.jpg" />
 </div>
 <div class="box-overlay"></div>
-
-
 
 </body>
 </html>
