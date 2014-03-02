@@ -116,9 +116,8 @@ z-index:15;
 
 #right-side-menu
 {
-width:15%;
 position:absolute;
-z-index: 12;
+z-index: 15;
 right:0px;
 top:50px;
 height:auto;
@@ -137,6 +136,8 @@ background:url(../assets/images/dot.png) 0 0 repeat;
 
 #right-side-menu .top-right-corner ul 
 {	
+margin:0px;
+padding:0px;
 }
 
 #right-side-menu .top-right-corner ul li{
@@ -154,12 +155,17 @@ border-bottom:none;
 text-decoration:none;
 display:block;
 font-size:14px;
-font-weight:bold;
+font-weight:normal;
 color:#FFFFFF;
 padding:0 0px 0 0px;
 height: 30px;
 padding-top: 6px;
 padding-left:10px;
+}
+
+#right-side-menu .top-right-corner ul li a:hover
+{
+background:url(../assets/images/overlay.png) 0 0 repeat;
 }
 
 #right-side-menu .bottom-right-corner{
@@ -178,6 +184,7 @@ border-right:none;
 border-top-left-radius:6px;
 border-bottom-left-radius:6px;
 }
+
 #right-side-menu .bottom
 {
 clear:both;
