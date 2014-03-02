@@ -12,12 +12,11 @@ var Viewport = Backbone.View.extend({
     
     // display a string to the target item
     render: function( str ) {
-
-        // first visualization. it creates an item with the string.
-       
         
     }
 });
+
+
 
 /**
  * The Menu View
@@ -35,7 +34,6 @@ var Menu = Backbone.View.extend({
     },
     
     onClick: function( e ) {
-		alert("xvxcvxcvxcv");
         // uncomment this row to make it work!
         //router.navigate('/'); 
     }
