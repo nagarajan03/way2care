@@ -1,0 +1,42 @@
+@charset "utf-8";
+/* CSS Document */
+
+*
+{
+margin:0px;
+padding:0px;	
+}
+
+body
+{
+
+width:100%;
+height:100%;
+overflow:hidden;
+}
+
+.box-overlay
+{
+background:url(../assets/images/pattern.png) repeat;
+width: 100%;
+height: 100%;
+position: fixed;
+top: 0px;
+left: 0px;
+z-index: 10;	
+}
+
+.backImg
+{
+width: 100%;
+height: 100%;
+position: fixed;
+top: 0px;
+left: 0px;
+z-index:9;
+}
+#warapper
+{
+z-index:11;
+position:relative;
+}
