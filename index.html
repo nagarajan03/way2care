@@ -17,6 +17,19 @@
 		});  
       });
     </script>
+    <script type="text/javascript">
+	 $(document).ready(function(e)  {
+		  $('.bottom-right-corner').bind('mousedown',function(){var effect = 'slide';
+              var marginRight = $('.top-right-corner').css('margin-right');
+			  if(marginRight  === "-151px"){
+				 $('.top-right-corner').animate({'margin-right':'0px'},1000);
+			  }else{
+				  $('.top-right-corner').animate({'margin-right':'-151px'},1000);
+			  }
+			 
+		  });
+	  });
+	</script>
 </head>
 <body>
 <div id="warapper">
@@ -34,7 +47,21 @@
  </div>
  
  <!-- right side menu -->
+ 
  <div id="right-side-menu">
+    <div class="top-right-corner">
+    
+    <ul>
+       <li><a href="#">kalvi</a></li>
+       <li><a href="#">kalvi</a></li>
+       <li><a href="#">kalvi</a></li>
+       <li><a href="#">kalvi</a></li>
+       <li><a href="#">kalvi</a></li>
+       <li><a href="#">kalvi</a></li>
+    </ul>
+    </div>
+     <div class="bottom-right-corner">Right</div>
+     <div class="bottom"></div>
  </div>
  
  <!-- Left side menu-->
