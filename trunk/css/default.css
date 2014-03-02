@@ -126,33 +126,40 @@ height:auto;
 }
 
 #right-side-menu .top-right-corner{
-	border:solid #7B7A80 1px;
-	width:180px;
-	position:relative;
-	float:right;
-	margin-right: 0px;
-	
+border:solid #7B7A80 1px;
+width:180px;
+position:relative;
+float:right;
+margin-right: 0px;
+border-right:none;	
+background:url(../assets/images/dot.png) 0 0 repeat; 
 }
 
 #right-side-menu .top-right-corner ul 
 {	
-text-align:center;
 }
 
 #right-side-menu .top-right-corner ul li{
-	list-style:none;
-	border:solid #7B7A80 1px;
+list-style:none;
+border-bottom:solid #7B7A80 1px;
 }
+
+#right-side-menu .top-right-corner ul li:last-child
+{
+border-bottom:none;
+}
+
 #right-side-menu .top-right-corner ul li a
 {
-    text-decoration:none;
-    display:block;
-    font-size:14px;
-    font-weight:bold;
-    color:#FFFFFF;
-    padding:0 0px 0 0px;
-	height: 30px;
-    padding-top: 6px;
+text-decoration:none;
+display:block;
+font-size:14px;
+font-weight:bold;
+color:#FFFFFF;
+padding:0 0px 0 0px;
+height: 30px;
+padding-top: 6px;
+padding-left:10px;
 }
 
 #right-side-menu .bottom-right-corner{
@@ -164,10 +171,12 @@ cursor:pointer;
 border-top:none;
 z-index:15;
 border:1px solid #696969;
-width:35px;
 color:#FFF;
-
 float:right;
+padding: 7px;
+border-right:none;
+border-top-left-radius:6px;
+border-bottom-left-radius:6px;
 }
 #right-side-menu .bottom
 {
