@@ -117,12 +117,61 @@ z-index:15;
 #right-side-menu
 {
 width:15%;
-height:50px;
 position:absolute;
 z-index: 12;
 right:0px;
 top:50px;
 border:1px solid red;
+height:auto;
+
+}
+
+#right-side-menu .top-right-corner{
+	border:solid #000 1px;
+	width:150px;
+	position:relative;
+	float:right;
+	margin-right: 0px;
+	
+}
+
+#right-side-menu .top-right-corner ul 
+{	
+text-align:center;
+}
+
+#right-side-menu .top-right-corner ul li{
+	list-style:none;
+	border:solid #000 1px;
+}
+#right-side-menu .top-right-corner ul li a
+{
+    text-decoration:none;
+    display:block;
+    font-size:14px;
+    font-weight:bold;
+    color:#FFFFFF;
+    padding:0 0px 0 0px;
+}
+
+#right-side-menu .bottom-right-corner{
+text-align:center;
+line-height:1.5em;
+font-size:14px;
+background:url(../assets/images/dot.png) 0 0 repeat;
+cursor:pointer;
+border-top:none;
+z-index:15;
+border:1px solid #696969;
+width:35px;
+color:#FFF;
+
+float:right;
+}
+#right-side-menu .bottom
+{
+clear:both;
+height:10px;
 }
 
 
