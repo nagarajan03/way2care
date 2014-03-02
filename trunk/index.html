@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>WAY 2 CARE</title>
     <link href="css/default.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="lib/jquery-1.11.0.min.js"></script>
@@ -12,7 +13,7 @@
     <script type="text/javascript" src="core/core.js"></script>
     <script type="text/javascript">
       $(document).ready(function(e) {
-        $('.top-menu-botton').bind('click',function(){
+        $('.top-menu-botton').bind('mousedown',function(){
 		   $('.top-menu-content').slideToggle(1000);	
 		});  
       });
@@ -37,10 +38,10 @@
  <div id="top-header">
     <div class="top-menu-content">
       <ul>
-         <li><a href="#">Home</a></li>
-         <li><a href="#">About Us</a></li>
-         <li><a href="#">Blog</a></li>
-         <li><a href="#">Contact</a></li>
+         <li><a href="#route/1">Home</a></li>
+         <li><a href="#route/2">About Us</a></li>
+         <li><a href="#route/3">Blog</a></li>
+         <li><a href="#route/4">Contact</a></li>
       </ul>
     </div>	
     <div class="top-menu-botton">MENU</div>
