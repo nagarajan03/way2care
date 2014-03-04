@@ -155,11 +155,11 @@ border-bottom:none;
 {
 text-decoration:none;
 display:block;
-font-size:14px;
+font-size:13px;
 font-weight:normal;
 color:#FFFFFF;
 padding:0 0px 0 0px;
-height: 30px;
+height: 36px;
 padding-top: 6px;
 padding-left:10px;
 }
@@ -200,14 +200,109 @@ height:10px;
 #left-side-menu
 {
 width:15%;
-height:50px;
+height:auto;
 position:absolute;
 z-index: 12;
 left:0px;
 top:50px;
-border:1px solid red;
 }
 
+#left-side-menu .top-left-corner{
+border:solid #7B7A80 1px;
+width:180px;
+position:relative;
+float:left;
+margin-left: 0px;
+border-left:none;	
+background:url(../assets/images/dot.png) 0 0 repeat; 
+}
+
+#left-side-menu .top-left-corner ul 
+{	
+margin:0px;
+padding:0px;
+}
+
+#left-side-menu .top-left-corner ul li{
+list-style:none;
+border-bottom:solid #7B7A80 1px;
+}
+
+#left-side-menu .top-left-corner ul li:last-child
+{
+border-bottom:none;
+}
+
+#left-side-menu .top-left-corner ul li a
+{
+text-decoration:none;
+display:block;
+font-size:13px;
+font-weight:normal;
+color:#FFFFFF;
+padding:0 0px 0 0px;
+height: 36px;
+padding-top: 6px;
+padding-left:10px;
+}
+
+#left-side-menu .top-left-corner ul li a:hover
+{
+background:url(../assets/images/overlay.png) 0 0 repeat;
+}
+
+#left-side-menu .bottom-left-corner{
+text-align:center;
+line-height:1.5em;
+font-size:14px;
+background:url(../assets/images/dot.png) 0 0 repeat;
+cursor:pointer;
+border-top:none;
+z-index:15;
+border:1px solid #696969;
+color:#FFF;
+float:left;
+padding: 7px;
+border-left:none;
+border-top-right-radius:6px;
+border-bottom-right-radius:6px;
+}
+
+#left-side-menu .bottom
+{
+clear:both;
+height:10px;
+}
+
+/******************************
+images at the top
+******************************/
+#imageline{
+	padding:30px 0;
+	height:auto;
+	margin-bottom:70px;
+	margin-left:70px;
+	}
+
+#imageline ul{
+	display:inline;
+	margin:0;
+	padding:0;
+	list-style:none;
+	}
+
+#imageline li{
+	display:block;
+	float:left;
+	width:186px;
+	margin:0 10px 0 0;
+	padding:4px;
+	}
+
+#imageline li.last{
+	margin-right:0;
+	}
+	
 /******************************
 Main content layout
 ******************************/
@@ -215,11 +310,79 @@ Main content layout
 #container
 {
 width:70%;
-height:50px;
+height:auto;
 position:relative;
 margin: 50px auto;
 z-index: 12;
-border:1px solid red;	
 overflow:hidden;	
 }
 
+.title{
+font-size:28px;
+font-weight:bold;
+color:#FFF;
+text-align:center;
+}
+
+.mainbar {
+margin:10px 10px 0px 10px;
+padding:0;
+float:left;
+}
+
+.mainbar div.img {
+padding:12px 10px 5px 5px;
+float:left;
+}
+
+#container .mainbar img.fl {
+margin:0;
+border:1px solid #696969;
+}
+
+p.spec {
+padding:5px 0px 20px 0px;
+float:right;
+}
+
+.spec a {
+outline:none;color:#FFFF00;
+}
+
+a.rm {
+display:block;
+float:left;
+margin:0 0 16px;
+padding:0;
+font-size:13px;
+line-height:18px;
+font-weight:normal;
+text-transform:none;
+color:#FFFF00;
+text-decoration:none;
+text-align:center;
+}
+
+a.rm:hover {
+text-decoration:underline;
+}
+
+p {
+margin:8px 0;
+padding:0 0 8px 0;
+}
+
+.index_content h3 {
+color:#FF0;
+margin-top: -17px;
+}
+
+.index_content {
+height:170px;
+width:auto;
+padding:5px 5px 5px 5px;
+}
+.index_content strong {
+color:#FFFFFF;
+font-size:12px;
+}
