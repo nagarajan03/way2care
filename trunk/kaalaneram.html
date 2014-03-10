@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>WAY 2 CARE</title>
+    <link href="css/default.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="lib/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="core/screen.js"></script>
+    <script type="text/javascript" src="lib/underscore-min.js"></script>
+    <script type="text/javascript" src="lib/backbone-min.js"></script>
+    <script type="text/javascript" src="core/core.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(e) {
+        $('.top-menu-botton').bind('mousedown',function(){
+		   $('.top-menu-content').slideToggle(1000);	
+		});  
+      });
+    </script>
+    <script type="text/javascript">
+	 $(document).ready(function(e)  {
+		  $('.bottom-right-corner').bind('mousedown',function(){var effect = 'slide';
+              var marginRight = $('.top-right-corner').css('margin-right');
+			  if(marginRight  === "-191px"){
+				 $('.top-right-corner').animate({'margin-right':'0px'},1000);
+			  }else{
+				  $('.top-right-corner').animate({'margin-right':'-191px'},1000);
+			  }
+			 
+		  });
+	  });
+	</script>
+    <script type="text/javascript">
+	  $(document).ready(function(e) {
+		  $('.bottom-left-corner').bind('mousedown',function(){var effect = 'slide';
+		      var marginleft = $('.top-left-corner').css('margin-left');
+			  if(marginleft === "-191px"){
+				  $('.top-left-corner').animate({'margin-left':'0px'},1000);
+			  }else{
+				  $('.top-left-corner').animate({'margin-left':'-191px'},1000);
+			  }
+		  });
+	  });
+    </script>
+</head>
+<body>
+<div id="warapper">
+<!-- Header menu -->
+ <div id="top-header">
+    <div class="top-menu-content">
+      <ul>
+         <li><a href="#route/1">Home</a></li>
+         <li><a href="#route/2">About Us</a></li>
+         <li><a href="#route/3">Blog</a></li>
+         <li><a href="#route/4">Contact</a></li>
+      </ul>
+    </div>	
+    <div class="top-menu-botton">MENU</div>
+ </div>
+ 
+ <!-- right side menu -->
+ 
+ <div id="right-side-menu">
+    <div class="top-right-corner">
+    
+    <ul>
+       <li><a href="#">திருமண தகவல் </a></li>
+       <li><a href="#">கல்வி</a></li>
+       <li><a href="#">வேலை வாய்ப்பு </a></li>
+       <li><a href="#">புத்தகங்கள்</a></li>
+       <li><a href="#">ஊடகங்கள்</a></li>
+       <li><a href="#">சமூக விழிப்புணர்வு</a></li>
+       <li><a href="#">வாழ்வளிப்போம்</a></li>
+       <li><a href="#">இசை </a></li>
+       <li><a href="#">திறமைத் தேடல்</a></li>
+       <li><a href="#">மருத்துவமனைகள்</a></li>
+       <li><a href="#">சுயதொழில் முனைவோர் </a></li>
+       <li><a href="#">மரித்தோர்காக ஜெபிப்போம்!</a></li>
+       <li><a href="#">பிறந்தநாள் / திருமண வாழ்த்து </a></li>
+    </ul>
+    </div>
+     <div class="bottom-right-corner">தொடர்புகள்</div>
+     <div class="bottom"></div>
+ </div>      
+ 
+ <!-- Left side menu-->
+ <div id="left-side-menu">
+     <div class="top-left-corner">
+     <ul>
+     <li><a href="#">Home</a></li>
+     <li><a href="#">கால நேரம்</a></li>
+     <li><a href="#">வரலாற்று நாயகி</a></li>
+     <li><a href="#">தோமாவின் வரலாறு</a></li>
+     <li><a href="#">கடவுளின் தாய்!</a></li>
+     <li><a href="#">கிறிஸ்துமஸ் வரலாறு</a></li>
+     <li><a href="#">அன்பு நண்பர் இலாசர்!</a></li>
+     <li><a href="#"></a></li>
+     <li><a href="#"></a></li>
+     <li><a href="#"></a></li>
+     <li><a href="#"></a></li>
+     </ul>
+     </div>
+     <div class="bottom-left-corner">தலைப்புகள் </div>
+     <div class="bottom"></div>
+ </div>
+ 
+ 
+ <!-- Main Container-->
+ 
+  <div id="container">
+   <div id="imageline">
+    <ul>
+      <li><a href="#"><img src="assets/images/catho info.jpg" alt=""  /></a></li>
+      <li><a href="#"><img src="assets/images/pope.jpg" alt=""  /></a></li>
+      <li><a href="#"><img src="assets/images/Rosary prayers.jpg" alt=""  /></a></li>
+      <li><a href="#"><img src="assets/images/wod.jpg" alt=""  /></a></li>
+      <li><a href="#"><img src="assets/images/wod_tam.jpg" alt=""  /></a></li>
+      <li class="last"><a href="#"><img src="assets/images/wod_edu.jpg" alt="" /></a></li>
+    </ul>
+    <br class="clear" />
+  </div>
+       <div class="title">முக்கிய பதிப்புகள்</div> 
+          <div class="mainbar">
+          <div class="index_content">
+          <div class="img"><img src="assets/images/img1.jpg" width="145" height="95" class="fl" /></div>
+          <p><h3>முதலாம் பதிப்பு </h3><strong>வளர்ந்து வரும் அறிவியல் முன்னேற்றத்தில் கணினி மிக இன்றியமையாத கருவியாக மாறிவருகிறது. தமிழன் இன்று கணினியுடன் நெருங்கிய தொடர்புடைய இணையத்தில் தமிழைப் புகுத்தி அதன் வளர்ச்சியில் முக்கியப் பங்கேற்றுள்ளான். இணையப் பயன்பாட்டில் தமிழ்மொழி இரண்டாவது இடத்தைப் பெற்று வளர்ந்து வருகிறது.ஆங்கில மொழி இணைய தளங்களைப் போல் தமிழ் மொழியிலான இணையத் தளங்களும் உருவாகிக் கொண்டிருக்கின்றன. </strong> </p>
+          <p class="spec"><a href="#" class="rm">Read more &raquo;</a></p></div>
+          
+          <div class="index_content">
+          <div class="img"><img src="assets/images/img1.jpg" width="145" height="95" alt="" class="fl" /></div>
+          <p><h3>முதலாம் பதிப்பு </h3><strong>வளர்ந்து வரும் அறிவியல் முன்னேற்றத்தில் கணினி மிக இன்றியமையாத கருவியாக மாறிவருகிறது. தமிழன் இன்று கணினியுடன் நெருங்கிய தொடர்புடைய இணையத்தில் தமிழைப் புகுத்தி அதன் வளர்ச்சியில் முக்கியப் பங்கேற்றுள்ளான். இணையப் பயன்பாட்டில் தமிழ்மொழி இரண்டாவது இடத்தைப் பெற்று வளர்ந்து வருகிறது.ஆங்கில மொழி இணைய தளங்களைப் போல் தமிழ் மொழியிலான இணையத் தளங்களும் உருவாகிக் கொண்டிருக்கின்றன.  </strong> </p>
+          <p class="spec"><a href="#" class="rm">Read more &raquo;</a></p></div>
+            
+          <div class="index_content">
+          <div class="img"><img src="assets/images/img1.jpg" width="145" height="95" alt="" class="fl" /></div>
+          <p><h3>முதலாம் பதிப்பு </h3><strong>வளர்ந்து வரும் அறிவியல் முன்னேற்றத்தில் கணினி மிக இன்றியமையாத கருவியாக மாறிவருகிறது. தமிழன் இன்று கணினியுடன் நெருங்கிய தொடர்புடைய இணையத்தில் தமிழைப் புகுத்தி அதன் வளர்ச்சியில் முக்கியப் பங்கேற்றுள்ளான். இணையப் பயன்பாட்டில் தமிழ்மொழி இரண்டாவது இடத்தைப் பெற்று வளர்ந்து வருகிறது.ஆங்கில மொழி இணைய தளங்களைப் போல் தமிழ் மொழியிலான இணையத் தளங்களும் உருவாகிக் கொண்டிருக்கின்றன.  </strong>
+          <p class="spec"><a href="#" class="rm">Read more &raquo;</a></p></div>
+          
+          <div class="index_content">
+          <div class="img"><img src="assets/images/img1.jpg" width="145" height="95" alt="" class="fl" /></div>
+          <p><h3>முதலாம் பதிப்பு </h3><strong>வளர்ந்து வரும் அறிவியல் முன்னேற்றத்தில் கணினி மிக இன்றியமையாத கருவியாக மாறிவருகிறது. தமிழன் இன்று கணினியுடன் நெருங்கிய தொடர்புடைய இணையத்தில் தமிழைப் புகுத்தி அதன் வளர்ச்சியில் முக்கியப் பங்கேற்றுள்ளான். இணையப் பயன்பாட்டில் தமிழ்மொழி இரண்டாவது இடத்தைப் பெற்று வளர்ந்து வருகிறது.ஆங்கில மொழி இணைய தளங்களைப் போல் தமிழ் மொழியிலான இணையத் தளங்களும் உருவாகிக் கொண்டிருக்கின்றன.   </strong>
+          <p class="spec"><a href="#" class="rm">Read more &raquo;</a></p></div>
+          <div class="index_content">
+          <div class="img"><img src="assets/images/img1.jpg" width="145" height="95" alt="" class="fl" /></div>
+          <p><h3>முதலாம் பதிப்பு </h3><strong>வளர்ந்து வரும் அறிவியல் முன்னேற்றத்தில் கணினி மிக இன்றியமையாத கருவியாக மாறிவருகிறது. தமிழன் இன்று கணினியுடன் நெருங்கிய தொடர்புடைய இணையத்தில் தமிழைப் புகுத்தி அதன் வளர்ச்சியில் முக்கியப் பங்கேற்றுள்ளான். இணையப் பயன்பாட்டில் தமிழ்மொழி இரண்டாவது இடத்தைப் பெற்று வளர்ந்து வருகிறது.ஆங்கில மொழி இணைய தளங்களைப் போல் தமிழ் மொழியிலான இணையத் தளங்களும் உருவாகிக் கொண்டிருக்கின்றன.   </strong>
+          <p class="spec"><a href="#" class="rm">Read more &raquo;</a></p></div>
+          <div class="clr"></div>
+        </div>
+  
+             </div>
+      </div>
+</div> 
+
+<!-- background desgin start here-->
+<div class="backImg">
+  <img src="assets/images/abstract_color_background_picture_8016-wide.jpg" />
+</div>
+<div class="box-overlay"></div>
+
+</body>
+</html>
