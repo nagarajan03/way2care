@@ -12,7 +12,7 @@ var Viewport = Backbone.View.extend({
     
     // display a string to the target item
     render: function( str ) {
-        
+       
     }
 });
 
@@ -41,6 +41,7 @@ var Menu = Backbone.View.extend({
 });
 
 
+
 /**
  * The Router
  * it translates url requests into actions.
@@ -58,7 +59,7 @@ var Router = Backbone.Router.extend({
     defaultRoute: function( routeId ) {	
         viewport.render( 'You clicked route "' + routeId + '"' );
     }
-    
+    	
 });
 
 

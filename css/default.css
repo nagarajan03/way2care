@@ -1,8 +1,15 @@
+
 @charset "utf-8";
 *
 {
 margin:0px;
 padding:0px;	
+}
+
+@font-face
+{
+font-family: Franchise-Bold;
+src: url(../fonts/Franchise-Bold.ttf);
 }
 
 body
@@ -309,12 +316,20 @@ Main content layout
 
 #container
 {
-width:70%;
+width:100%;
 height:auto;
 position:relative;
 margin: 50px auto;
 z-index: 12;
 overflow:hidden;	
+}
+
+#container section
+{
+width:80%;
+border:1px solid red;
+margin:0 auto;
+float:left;
 }
 
 .title{

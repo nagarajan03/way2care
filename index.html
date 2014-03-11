@@ -11,6 +11,7 @@
     <script type="text/javascript" src="lib/underscore-min.js"></script>
     <script type="text/javascript" src="lib/backbone-min.js"></script>
     <script type="text/javascript" src="core/core.js"></script>
+    <script src="template/tpl.tpl"></script>
     <script type="text/javascript">
       $(document).ready(function(e) {
         $('.top-menu-botton').bind('mousedown',function(){
@@ -44,14 +45,14 @@
 	  });
     </script>
     <script type="text/javascript">
-	$(document).ready(function(e) {
+/*	$(document).ready(function(e) {
 		var swipes = []
           $('.slider').each(function(i, obj) {
           swipes[i] = new Swipe(obj);
     });
 	});
 	swipes[1].prev();
-    swipes[9].prev();
+    swipes[9].prev();*/
 	</script>
  
 </head>
@@ -118,53 +119,9 @@
  
  
  <!-- Main Container-->
- <div class="slider" id="slider_1">...</div>
-<div class="slider" id="slider_xy">...</div>
-<div class="slider" id="foobar">...</div>
- 
   <div id="container">
- <div id="imageline">
-    <ul>
-      <li><a href="#"><img src="assets/images/catho info.jpg" alt=""  /></a></li>
-      <li><a href="#"><img src="assets/images/pope.jpg" alt=""  /></a></li>
-      <li><a href="#"><img src="assets/images/Rosary prayers.jpg" alt=""  /></a></li>
-      <li><a href="#"><img src="assets/images/wod.jpg" alt=""  /></a></li>
-      <li><a href="#"><img src="assets/images/wod_tam.jpg" alt=""  /></a></li>
-      <li class="last"><a href="#"><img src="assets/images/wod_edu.jpg" alt="" /></a></li>
-    </ul>
-    <br class="clear" />
-  </div>
-       <div class="title">முக்கிய பதிப்புகள்</div> 
-          <div class="mainbar">
-          <div class="index_content">
-          <div class="img"><img src="assets/images/img1.jpg" width="145" height="95" class="fl" /></div>
-          <p><h3>முதலாம் பதிப்பு </h3><strong>வளர்ந்து வரும் அறிவியல் முன்னேற்றத்தில் கணினி மிக இன்றியமையாத கருவியாக மாறிவருகிறது. தமிழன் இன்று கணினியுடன் நெருங்கிய தொடர்புடைய இணையத்தில் தமிழைப் புகுத்தி அதன் வளர்ச்சியில் முக்கியப் பங்கேற்றுள்ளான். இணையப் பயன்பாட்டில் தமிழ்மொழி இரண்டாவது இடத்தைப் பெற்று வளர்ந்து வருகிறது.ஆங்கில மொழி இணைய தளங்களைப் போல் தமிழ் மொழியிலான இணையத் தளங்களும் உருவாகிக் கொண்டிருக்கின்றன. </strong> </p>
-          <p class="spec"><a href="#" class="rm">Read more &raquo;</a></p></div>
-          
-          <div class="index_content">
-          <div class="img"><img src="assets/images/img1.jpg" width="145" height="95" alt="" class="fl" /></div>
-          <p><h3>முதலாம் பதிப்பு </h3><strong>வளர்ந்து வரும் அறிவியல் முன்னேற்றத்தில் கணினி மிக இன்றியமையாத கருவியாக மாறிவருகிறது. தமிழன் இன்று கணினியுடன் நெருங்கிய தொடர்புடைய இணையத்தில் தமிழைப் புகுத்தி அதன் வளர்ச்சியில் முக்கியப் பங்கேற்றுள்ளான். இணையப் பயன்பாட்டில் தமிழ்மொழி இரண்டாவது இடத்தைப் பெற்று வளர்ந்து வருகிறது.ஆங்கில மொழி இணைய தளங்களைப் போல் தமிழ் மொழியிலான இணையத் தளங்களும் உருவாகிக் கொண்டிருக்கின்றன.  </strong> </p>
-          <p class="spec"><a href="#" class="rm">Read more &raquo;</a></p></div>
-            
-          <div class="index_content">
-          <div class="img"><img src="assets/images/img1.jpg" width="145" height="95" alt="" class="fl" /></div>
-          <p><h3>முதலாம் பதிப்பு </h3><strong>வளர்ந்து வரும் அறிவியல் முன்னேற்றத்தில் கணினி மிக இன்றியமையாத கருவியாக மாறிவருகிறது. தமிழன் இன்று கணினியுடன் நெருங்கிய தொடர்புடைய இணையத்தில் தமிழைப் புகுத்தி அதன் வளர்ச்சியில் முக்கியப் பங்கேற்றுள்ளான். இணையப் பயன்பாட்டில் தமிழ்மொழி இரண்டாவது இடத்தைப் பெற்று வளர்ந்து வருகிறது.ஆங்கில மொழி இணைய தளங்களைப் போல் தமிழ் மொழியிலான இணையத் தளங்களும் உருவாகிக் கொண்டிருக்கின்றன.  </strong>
-          <p class="spec"><a href="#" class="rm">Read more &raquo;</a></p></div>
-          
-          <div class="index_content">
-          <div class="img"><img src="assets/images/img1.jpg" width="145" height="95" alt="" class="fl" /></div>
-          <p><h3>முதலாம் பதிப்பு </h3><strong>வளர்ந்து வரும் அறிவியல் முன்னேற்றத்தில் கணினி மிக இன்றியமையாத கருவியாக மாறிவருகிறது. தமிழன் இன்று கணினியுடன் நெருங்கிய தொடர்புடைய இணையத்தில் தமிழைப் புகுத்தி அதன் வளர்ச்சியில் முக்கியப் பங்கேற்றுள்ளான். இணையப் பயன்பாட்டில் தமிழ்மொழி இரண்டாவது இடத்தைப் பெற்று வளர்ந்து வருகிறது.ஆங்கில மொழி இணைய தளங்களைப் போல் தமிழ் மொழியிலான இணையத் தளங்களும் உருவாகிக் கொண்டிருக்கின்றன.   </strong>
-          <p class="spec"><a href="#" class="rm">Read more &raquo;</a></p></div>
-          <div class="index_content">
-          <div class="img"><img src="assets/images/img1.jpg" width="145" height="95" alt="" class="fl" /></div>
-          <p><h3>முதலாம் பதிப்பு </h3><strong>வளர்ந்து வரும் அறிவியல் முன்னேற்றத்தில் கணினி மிக இன்றியமையாத கருவியாக மாறிவருகிறது. தமிழன் இன்று கணினியுடன் நெருங்கிய தொடர்புடைய இணையத்தில் தமிழைப் புகுத்தி அதன் வளர்ச்சியில் முக்கியப் பங்கேற்றுள்ளான். இணையப் பயன்பாட்டில் தமிழ்மொழி இரண்டாவது இடத்தைப் பெற்று வளர்ந்து வருகிறது.ஆங்கில மொழி இணைய தளங்களைப் போல் தமிழ் மொழியிலான இணையத் தளங்களும் உருவாகிக் கொண்டிருக்கின்றன.   </strong>
-          <p class="spec"><a href="#" class="rm">Read more &raquo;</a></p></div>
-          <div class="clr"></div>
-        </div>
-  
-             </div>
-      </div>
-</div> 
+
+  </div> 
 
 <!-- background desgin start here-->
 <div class="backImg">
