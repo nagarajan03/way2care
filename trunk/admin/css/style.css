@@ -1,0 +1,112 @@
+@charset "utf-8";
+/* CSS Document */
+
+body
+{
+background: url(../images/dot.png) repeat;    
+margin: 0px;
+padding:0px;
+color:#FFF;
+}
+
+#login
+{
+width:500px;
+margin:10% auto;
+}
+
+#login .header
+{
+ text-align:right;
+ font-size:30px;
+ line-height:50px;
+ border-bottom:double 5px #FFF;
+}
+
+#login input
+{
+border:1px solid #002166;
+height:50px;
+width: 427px;
+margin-top: 40px;
+font-size:18px;
+padding:0px 10px 0 10px;
+background: #FFF;
+}
+
+#login input[type="text"]
+{
+background: url(../images/admin.png) right center no-repeat ;
+padding-right:61px;
+padding-top:10px;
+padding-bottom:10px;
+}
+
+#login input[type="password"]
+{
+background: url(../images/pass.png) right center no-repeat ;
+padding-right:61px;
+padding-top:10px;
+padding-bottom:10px;
+}
+
+#login .bottom
+{
+border-bottom:1px solid #FFF;
+width:500px;
+margin-top:50px;
+}
+
+
+
+ .disble
+{
+line-height:50px;
+padding:0px  10px;
+border:1px solid #FFF;
+width:60px;
+font-size:25px;
+margin-top:25px;
+color: #000;
+background: #7B7A80;
+}
+ .login-button
+{
+line-height:50px;
+padding:0px  10px;
+border:1px solid #FFF;
+width:60px;
+font-size:25px;
+margin-top:25px;
+cursor:pointer;
+color: #000;
+background: #FFF;
+}
+
+.login-button:hover
+{
+background:#D0D0D0;
+}
+
+#overlay
+{
+background: url(../images/pattern.png) repeat;
+position: fixed;
+left: 0px;
+top: 0px;
+width:100%;
+height:100%;
+z-index: 1000;
+display: none;
+}
+
+#porgreess
+{
+height:10px;
+background: #0134c5;
+position: absolute;
+left:0px;
+top:20px;
+border:1px solid red;
+display: none;
+}
