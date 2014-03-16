@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'localhost/admin/';
+$config['base_url']	= 'http://localhost/way2care/admin';
 
 /*
 |--------------------------------------------------------------------------
