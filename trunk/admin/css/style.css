@@ -102,11 +102,156 @@ display: none;
 
 #porgreess
 {
-height:10px;
+height:5px;
 background: #0134c5;
 position: absolute;
 left:0px;
-top:20px;
-border:1px solid red;
+top:0px;
 display: none;
+}
+
+#login-error-message
+{
+width:475px;
+background: #CD5C5C;
+border:1px solid #FFB6C1;
+line-height: 2.2em;
+padding: 0px 12px;
+font-size: 1.5em;
+display: none;
+}
+
+/*
+*    Dashboard design 
+*/
+
+#warapper
+{
+width: 100%;
+}
+
+#warapper .header
+{
+width:100%;
+line-height:2.5em;
+text-align: center;
+font-size: 23px;
+background: #100000;
+}
+
+#warapper .header .content-name
+{
+
+}
+
+#warapper .right-side
+{
+display: inline-block;
+width:18%;
+vertical-align: top;
+}
+
+#warapper .right-side ul
+{
+margin:0px;
+padding:0px;
+}
+
+#warapper .right-side ul li
+{
+display: block;
+list-style: none;
+cursor: pointer;
+background: #C0C0C0;
+line-height: 2.5em;
+margin: 0px 0px 5px 0px;
+padding: 0px 0px 0px 20px;
+}
+
+#warapper .right-side ul li:hover
+{
+background: #B8B8B8 ;
+}
+
+#warapper .right-side ul li.active
+{
+background: #993333;
+}
+
+#warapper .left-side
+{
+display: inline-block;
+border:1px solid blue;
+vertical-align: top;
+width:81.2%;
+overflow: hidden;
+}
+
+#warapper .main-content
+{
+width:100%;
+border: 1px solid red;
+}
+
+
+#warapper .main-content .table-content
+{
+margin:8% auto;
+width: 80%;
+border:1px solid red;
+}
+
+#warapper .main-content .table-content .header
+{
+height:50px;
+background: #DCDCDC;
+border-bottom: 1px solid #808080;
+}
+
+#warapper .main-content .table-content .footer
+{
+height:50px;
+background: #DCDCDC;
+border-top:1px solid #808080;
+}
+
+#warapper .main-content .table-content .footer .next-pre-btn
+{
+width:82px;
+border:1px solid red;
+float: right;
+}
+
+#warapper .main-content .table-content .footer .next-pre-btn .next-btn
+{
+background: url(../images/next.png) 0 0 no-repeat;
+width:32px;
+height:32px;
+float:left;
+border:1px solid #000;
+margin-left: 10px;
+}
+
+#warapper .main-content .table-content .footer .next-pre-btn .prev-btn
+{
+background: url(../images/prev.png) 0 0 no-repeat;
+width:32px;
+height:32px;
+float:left;
+border:1px solid #000;
+}
+
+
+#warapper .main-content .table-content .header .add-btn
+{
+float: right;
+width:32px;
+height:32px;
+margin: 8px;
+background: url(../images/add.png) 0 0 no-repeat;
+cursor: pointer;
+}
+#warapper .main-content .table-content .header .add-btn:hover
+{
+opacity: 0.5;
 }

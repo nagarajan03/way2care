@@ -3,9 +3,12 @@
  */
 var cci;
 var global = function () {
-    this.name            = "global";
-    this.overlayId       = $('#overlay');
-    this.progressId      = $('#porgreess');
+    this.name                 = "global";
+    this.overlayId            = $('#overlay');
+    this.progressId           = $('#porgreess');
+    this.login_error_message  = $('#login-error-message');
+    this.main_content_slider  = $('.main-content');
+    this.sliderHolder         = $('#sliderHolder');
 };
 
 /***************************************************************
@@ -39,44 +42,77 @@ global.prototype.loginValidation = function () {
 
 global.prototype.loginSubmit  = function(){
    "use strict";
-   var formValueSerlize,form;
+   var getAjaxValue,form,data,stringToJson;
    form           = document.forms.login_form;
-   this.ajax('http://localhost/way2care/admin/index.php/listcontentcontroll/listView',"POST");
+   data           = $(form).serialize();
+   getAjaxValue   =  this.ajax(document.URL+'index.php/admin/login',"POST",data);
+   stringToJson   = JSON.parse(getAjaxValue);
+   if(stringToJson.sucess === false){
+      this.login_error_message.fadeIn(1000);
+      this.login_error_message.html(stringToJson.message);
+      this.login_error_message.delay(2000).fadeOut(1000);
+   }
 };
-
-
 
 /***************************************************************
               Login Function end point
 ****************************************************************/
-global.prototype.ajax  = function(requestUrl,dataType){
+global.prototype.ajax  = function(requestUrl,dataType,data){
    "use strict";
-   var xmlHttp;
-   if(window.XMLHttpRequest){
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlHttp = new XMLHttpRequest();
-   }else{
-        // code for IE6, IE5
-        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-   }
-   xmlHttp.onprogress = function(e){
-       
-    if (e.lengthComputable) {
-console.log(e.loaded / e.total * 100 + '%');
-}
-   }
-   xmlHttp.onreadystatechange = function() {
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-          console.log( xmlHttp.responseText);
+   var self  = this,content = null;
+   $.ajax({
+       async: false,
+        xhr: function() {
+            var xhr = new window.XMLHttpRequest();
+            xhr.addEventListener('progress', function(e) {
+                if (e.lengthComputable) {
+                    self.overlayId.show();
+                    self.progressId .show();
+                    self.progressId .animate({'width':'' + (100 * e.loaded / e.total) + '%'},100,function(){self.overlayId.fadeOut();});
+                }
+            });
+            return xhr;
+        }, 
+        type: dataType, 
+        url: requestUrl,
+        data:data,
+        complete: function(response, status, xhr) {
+            if(status === "success"){
+                 self.progressId .fadeOut(1000);
+                 content =  response.responseText;
+                 
+            }
+            
         }
-    }
-
-    xmlHttp.open("GET", "ajax_info.txt", true);
-    xmlHttp.send();
-  
+    });
+   return content; 
 };
 
 
+/**************************************************************************
+ *            Dashboard code start
+ ************************************************************************/
+
+global.prototype.sliderContent    = function(){
+   
+   var height,classCount,self = this;
+   classCount     =  this.main_content_slider.size();
+   height         = $(window).height()-60;
+   this.main_content_slider.css({'height':height+'px'});
+   this.sliderHolder.parent().css({'height':height+'px'});
+   this.sliderHolder.css({'height':height*classCount+'px'});
+   $('.right-side ul li').bind('mousedown',function(){
+       var currentSlider    = $(this).index();
+       $('.active').removeClass('active');
+       $(this).addClass('active');
+       console.log(currentSlider);
+       if($(this).index() === 0){
+           self.sliderHolder.stop().animate({'margin-top':'0px'},1000);
+       }else{
+           self.sliderHolder.stop().animate({'margin-top':-(currentSlider*height)+'px'},1000);
+       }
+   })  
+};
 
 
 /**************************************************************
