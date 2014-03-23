@@ -7,6 +7,7 @@ background: url(../images/dot.png) repeat;
 margin: 0px;
 padding:0px;
 color:#FFF;
+overflow-x: hidden;
 }
 
 #login
@@ -17,10 +18,10 @@ margin:10% auto;
 
 #login .header
 {
- text-align:right;
- font-size:30px;
- line-height:50px;
- border-bottom:double 5px #FFF;
+text-align:right;
+font-size:30px;
+line-height:50px;
+border-bottom:double 5px #FFF;
 }
 
 #login input
@@ -58,7 +59,6 @@ margin-top:50px;
 }
 
 
-
  .disble
 {
 line-height:50px;
@@ -90,13 +90,16 @@ background:#D0D0D0;
 
 #overlay
 {
-background: url(../images/pattern.png) repeat;
+background: url(../images/pattern.png)#000 repeat;
 position: fixed;
 left: 0px;
 top: 0px;
 width:100%;
 height:100%;
 z-index: 1000;
+-moz-opacity: 0.5;
+opacity:.5;
+filter: alpha(opacity=50);
 display: none;
 }
 
@@ -181,24 +184,22 @@ background: #993333;
 #warapper .left-side
 {
 display: inline-block;
-border:1px solid blue;
+border-left:1px solid blue;
 vertical-align: top;
-width:81.2%;
+width:81.6%;
 overflow: hidden;
 }
 
 #warapper .main-content
 {
 width:100%;
-border: 1px solid red;
 }
 
 
 #warapper .main-content .table-content
 {
-margin:8% auto;
-width: 80%;
-border:1px solid red;
+margin:5% auto;
+width: 99%;
 }
 
 #warapper .main-content .table-content .header
@@ -217,9 +218,10 @@ border-top:1px solid #808080;
 
 #warapper .main-content .table-content .footer .next-pre-btn
 {
-width:82px;
-border:1px solid red;
+width: 78px;
 float: right;
+margin-top: 8px;
+margin-right: 10px;
 }
 
 #warapper .main-content .table-content .footer .next-pre-btn .next-btn
@@ -239,6 +241,7 @@ width:32px;
 height:32px;
 float:left;
 border:1px solid #000;
+visibility: hidden;
 }
 
 
@@ -251,7 +254,239 @@ margin: 8px;
 background: url(../images/add.png) 0 0 no-repeat;
 cursor: pointer;
 }
+
 #warapper .main-content .table-content .header .add-btn:hover
 {
 opacity: 0.5;
+}
+
+#warapper .main-table-content
+{
+width:100%;
+}
+
+table.table-1
+{
+marign:0px;
+padding: 0px;
+}
+
+table.table-1 tr
+{
+border-bottom: 1px solid #E8E8E8;   
+}
+
+table.table-1 tr th
+{
+background:#707070;
+padding:10px 0px;
+border-right: 1px solid #E8E8E8 ;
+border-bottom: 1px solid #E8E8E8;
+}
+
+table.table-1 tr th:last-child
+{
+border-right: none;
+}
+
+table.table-1 tr td
+{
+background:#D0D0D0;
+padding: 10px;
+border-right: 1px solid #E8E8E8 ;
+border-bottom: 1px solid #E8E8E8;
+color:#000;
+}
+
+table.table-1 tr td:last-child
+{
+border-right: none;
+}
+
+#popup-box
+{
+position: absolute;
+z-index: 1000;
+background: #FFF;
+width:50%;
+left:100%;
+top:20%;
+color: #000;
+}
+
+#popup-box .popup-header
+{
+background:#C0C0C0;
+height: 40px;
+border-right:6px solid transparent;
+}
+
+#popup-box .popup-header .close
+{
+float: right;
+background:url(../images/normal_close.png) no-repeat;
+width:26px;
+height:26px;
+margin: 6px 0px 0 0px;
+cursor: pointer;    
+}
+
+#popup-box .popup-header .close:hover
+{
+background: url(../images/over_close.png) right center no-repeat;   
+}
+
+#popup-box .popup-header .title-name
+{
+float: left; 
+padding: 0 0 0 19px;
+line-height: 36px;
+font-size: 20px;
+font-weight: bold;
+color: #FFF;
+}
+
+#popup-box .popup-container
+{
+margin:10px;
+}
+
+#popup-box .footer
+{
+height: 50px;
+border-top:1px solid #B0B0B0 ;
+}
+
+#popup-box .footer #submit-btn
+{
+float: right;
+margin: 10px 10px 0 0;
+display: none;
+}
+
+#popup-box .footer #cancel-btn
+{
+float: right;
+margin: 10px 10px 0 0;
+display: none;
+}
+
+.edit
+{
+background: url(../images/edit.png) no-repeat;
+width:32px;
+height:32px;
+cursor: pointer;
+}
+
+.delete
+{
+background: url(../images/delete.png) no-repeat;
+width:32px;
+height:32px;
+cursor: pointer;
+}
+
+.edit:hover,.delete:hover
+{
+opacity:.5;
+filter: alpha(opacity=50);
+}
+
+.left-label
+{
+display: inline-block;
+vertical-align: middle;
+font-size: 18px;
+}
+
+.right-input-box
+{
+display: initial;
+vertical-align: top;
+}
+
+.right-input-box input[type="text"]
+{
+width:60%;
+height: 40px;
+margin:0 0 0 10px;
+padding:0 5px 0 5px;
+}
+
+.myButton 
+{
+-moz-box-shadow:inset 0px 1px 0px 0px #9acc85;
+-webkit-box-shadow:inset 0px 1px 0px 0px #9acc85;
+box-shadow:inset 0px 1px 0px 0px #9acc85;
+background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #74ad5a), color-stop(1, #68a54b));
+background:-moz-linear-gradient(top, #74ad5a 5%, #68a54b 100%);
+background:-webkit-linear-gradient(top, #74ad5a 5%, #68a54b 100%);
+background:-o-linear-gradient(top, #74ad5a 5%, #68a54b 100%);
+background:-ms-linear-gradient(top, #74ad5a 5%, #68a54b 100%);
+background:linear-gradient(to bottom, #74ad5a 5%, #68a54b 100%);
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#74ad5a', endColorstr='#68a54b',GradientType=0);
+background-color:#74ad5a;
+border:1px solid #3b6e22;
+display:inline-block;
+cursor:pointer;
+color:#ffffff;
+font-family:arial;
+font-size:13px;
+font-weight:bold;
+padding:6px 12px;
+text-decoration:none;
+}
+.myButton:hover {
+background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #68a54b), color-stop(1, #74ad5a));
+background:-moz-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
+background:-webkit-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
+background:-o-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
+background:-ms-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
+background:linear-gradient(to bottom, #68a54b 5%, #74ad5a 100%);
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#68a54b', endColorstr='#74ad5a',GradientType=0);
+background-color:#68a54b;
+}
+.myButton:active {
+position:relative;
+top:1px;
+}
+
+.myButton-cancel 
+{
+-moz-box-shadow:inset 0px 1px 0px 0px #818580;
+-webkit-box-shadow:inset 0px 1px 0px 0px #818580;
+box-shadow:inset 0px 1px 0px 0px #818580;
+background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #d3d6d2), color-stop(1, #a0a19f));
+background:-moz-linear-gradient(top, #d3d6d2 5%, #a0a19f 100%);
+background:-webkit-linear-gradient(top, #d3d6d2 5%, #a0a19f 100%);
+background:-o-linear-gradient(top, #d3d6d2 5%, #a0a19f 100%);
+background:-ms-linear-gradient(top, #d3d6d2 5%, #a0a19f 100%);
+background:linear-gradient(to bottom, #d3d6d2 5%, #a0a19f 100%);
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d3d6d2', endColorstr='#a0a19f',GradientType=0);
+background-color:#d3d6d2;
+border:1px solid #7d7d7d;
+display:inline-block;
+cursor:pointer;
+color:#ffffff;
+font-family:arial;
+font-size:13px;
+font-weight:bold;
+padding:6px 12px;
+text-decoration:none;
+}
+.myButton-cancel:hover 
+{
+background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #a0a19f), color-stop(1, #d3d6d2));
+background:-moz-linear-gradient(top, #a0a19f 5%, #d3d6d2 100%);
+background:-webkit-linear-gradient(top, #a0a19f 5%, #d3d6d2 100%);
+background:-o-linear-gradient(top, #a0a19f 5%, #d3d6d2 100%);
+background:-ms-linear-gradient(top, #a0a19f 5%, #d3d6d2 100%);
+background:linear-gradient(to bottom, #a0a19f 5%, #d3d6d2 100%);
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#a0a19f', endColorstr='#d3d6d2',GradientType=0);
+background-color:#a0a19f;
+}
+.myButton-cancel:active {
+position:relative;
+top:1px;
 }

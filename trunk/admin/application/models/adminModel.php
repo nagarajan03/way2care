@@ -20,4 +20,8 @@ class Adminmodel extends CI_Model{
 		return false;
 	}  
     }
+    public function blogTitleContentModel(){
+       $query = $this->db->query("SELECT * FROM blog_title WHERE status = '1' AND del = '1' ORDER BY time DESC");
+       return $query->result();
+    }
 }

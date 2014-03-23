@@ -5,36 +5,61 @@
 <title>CC Dashboard</title>
 <link rel="stylesheet" href="<?php echo base_url();?>css/style.css" type="text/css" />
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.11.0.min.js"></script>
-
+<script type="text/javascript" src="<?php echo base_url();?>js/underscore-min.js"></script>
+<script type="text/template" id="story-title-add">
+    <div class="left-label">Story Title</div>
+    <div class="right-input-box"><input type="text" name="story_title" id="story_title" /></div>
+</script> 
 </head>
 <body>
   <div id="warapper">
       <div class="header">CCI Dashboard</div>
       <div class="right-side">
           <ul>
-              <li class="active">Home</li>
-              <li>Home</li>
-              <li>Home</li>
-              <li>Home</li>
-              <li>Home</li>
-              <li>Home</li>
-              <li>Home</li>
-              <li>Home</li>
-              <li>Home</li>
-              <li>Home</li>
+              <li class="active">STORY TITLE</li>
+              <li>STORY CONTENT</li>
+              <li>RIGHT SIDE MENU CONTENT</li>
+              
           </ul>
       </div>
       <div class="left-side">
         <div id="sliderHolder">
             <div class="main-content">
-                <div class="table-content">
-                    
+                <div class="table-content" id="first-table">
                     <div class="header">
-                        <div class="add-btn"></div>
+                        <div class="add-btn" id="story-add"></div>
                     </div>
-                    
-                    
-                    
+                    <div class="main-table-content">
+                       <div class="horizontal-slider-holder">
+                            <script type="text/template" id="stroy-title-list">
+                                
+                                 <% var i= 1;_.each(contents,function(content){  %>
+                                     <table class="table-1" border="0" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                              <th width="20">S.No</th>
+                                              <th>Story Title</th>
+                                              <th width="150">Status</th>
+                                              <th width="20"></th>
+                                              <th width="20"></th>
+                                            </tr> 
+                                          <% _.each(content,function(contentVal){ %> 
+                                             <tr>
+                                                <td><%= i++ %></td>
+                                                <td><%= contentVal['title'] %></td>
+                                                <td><%= (contentVal['status'] =1)? "Active":"Inactive" %></td>
+                                                <td><div class="edit" id="blog_<%= contentVal['id'] %>"></div></td>
+                                                <td><div class="delete" id="blog_<%= contentVal['id'] %>"></div></td>
+                                             </tr>
+                                          <% }) %>
+                                     </table>
+                                 <% }) %>
+                              
+                               
+                          </script>
+                          
+                       </div>
+                    </div>
+                    <div style="clear:both;"></div>
                     <div class="footer">
                         <div class="next-pre-btn">
                             <div class="prev-btn"></div>
@@ -45,16 +70,27 @@
             </div>
           <div class="main-content">Content 2</div>
           <div class="main-content">Content 3</div>
-          <div class="main-content">Content 4</div>
-          <div class="main-content">Content 5</div>
-          <div class="main-content">Content 6</div>
-          <div class="main-content">Content 7</div>
-          <div class="main-content">Content 8</div>
-          <div class="main-content">Content 9</div>
-          <div class="main-content">Content 10</div>
+         
         </div>
       </div>
+     
   </div>
+    
+ <div id="overlay"></div>
+ <div id="popup-box">
+     <div class="popup-header">
+         <div class="title-name"> sampe</div>
+         <div class="close"></div>
+     </div>
+     <div class="popup-container">
+        
+     </div>
+     <div class="footer">
+         <div id="submit-btn" class="myButton" data-mode="true">Submit</div>
+         <div id="cancel-btn" class="myButton-cancel" data-mode="false">Cancel</div>
+     </div>
+ </div>
+   
 </body>
 </html>
 <script type="text/javascript" src="<?php echo base_url();?>js/main.js"></script>
@@ -62,7 +98,12 @@
     $(document).ready(function (){
      
          cci.sliderContent();
+         cci.closePupop();
+         cci.stroyTitle();
+         cci.horizontalSlider('#first-table');
+         cci.newFiledAdd('#story-add','#story-title-add',1,'story-title-add','ADD STORY TITLE');
       
     });
   
 </script>
+
