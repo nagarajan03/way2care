@@ -30,5 +30,23 @@ class Admin extends CI_Controller{
          $data      = array();
          $this->load->view('admin/dashboard',$data);
      }
+     public function dashboard_blogtitle(){
+         $data     = array();
+         $i        = 5;
+         $j        = 0;
+         $getVal   = $this->adminModel->blogTitleContentModel();
+         foreach ($getVal as $value){
+            $data[$i][]   = array(
+                'id'     => $value->blog_title_id,
+                'title'  => $value->blog_title,
+                'status' => $value->status
+            ); 
+            if($i === $j){
+                $i = $i*2;
+            }
+            $j++;
+         }
+         print(json_encode($data));
+     }
      
 }
