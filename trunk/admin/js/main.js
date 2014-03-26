@@ -220,15 +220,32 @@ global.prototype.newFiledAdd = function(id,templateId,noOfBtn,funCall,title){
     this.poupupContainer.html(template);
     this.pupop.find('.title-name').html(title);
     if(noOfBtn === 1){
-       this.pupop.find('.myButton').show();
-       this.pupop.find('.myButton').attr('data-add',funCall);
+       this.pupop.find('#submit-btn').show();
+       this.pupop.find('#submit-btn').attr('data-add',funCall);
     }else{
-       this.pupop.find('.myButton').show();
-       this.pupop.find('.myButton-cancel').show();
+       this.pupop.find('#submit-btn').show();
+       this.pupop.find('#cancel-btn').show();
     }
     this.showPupop(eventBtnId);
 };
 
+/*
+ * 
+ * @param {type} id
+ * @returns {undefined}
+ */
+global.prototype.form_submit  = function(){
+    var formName,formData,serData;
+    $('#submit-btn').bind('mousedown',function(){
+       $(this).removeClass('myButton').addClass('myButton-disble');
+       formName     = $(this).attr('data-add');
+       formData     = document.forms.formName;
+     //  serData      = $(formData).serialize();
+       console.log(formData);
+    });
+    
+    
+};
 
 global.prototype.showPupop  = function(id){
     var self = this;
