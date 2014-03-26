@@ -193,6 +193,7 @@ overflow: hidden;
 #warapper .main-content
 {
 width:100%;
+border:1px solid transparent;
 }
 
 
@@ -514,7 +515,6 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endCo
 background-color:#ffffff;
 border:1px solid #dcdcdc;
 display:inline-block;
-cursor:pointer;
 color:#666666;
 font-family:arial;
 font-size:15px;
