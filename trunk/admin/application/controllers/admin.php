@@ -33,7 +33,7 @@ class Admin extends CI_Controller{
      public function dashboard_blogtitle(){
          $data     = array();
          $i        = 5;
-         $j        = 0;
+         $j        = 1;
          $getVal   = $this->adminModel->blogTitleContentModel();
          foreach ($getVal as $value){
             $data[$i][]   = array(
@@ -42,7 +42,7 @@ class Admin extends CI_Controller{
                 'status' => $value->status
             ); 
             if($i === $j){
-                $i = $i*2;
+                $i = $i+5;
             }
             $j++;
          }

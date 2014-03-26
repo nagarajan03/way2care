@@ -196,7 +196,7 @@
     $(document).ready(function (){
      
          cci.sliderContent();
-         cci.closePupop();
+         cci.closePupop(1);
          cci.stroyTitle();
          cci.horizontalSlider('#first-table');
          cci.newFiledAdd('#story-add','#story-title-add',1,'story_title','ADD STORY TITLE');
