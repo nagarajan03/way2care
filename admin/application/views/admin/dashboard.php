@@ -7,8 +7,18 @@
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/underscore-min.js"></script>
 <script type="text/template" id="story-title-add">
-    <div class="left-label">Story Title</div>
-    <div class="right-input-box"><input type="text" name="story_title" id="story_title" /></div>
+    <form name="story_title">
+        <table border="0" cellpadding="0" cellspacing="5" class="table-2">
+          <tr>
+             <td>Story Title</td>
+             <td><input type="text" name="story_title" id="story_title"/></td>
+          </tr>
+           <tr>
+             <td>Status</td>
+             <td><select name="status" id="status"><option value="1">Active</option><option value="0">Inactive</option></select></td>
+          </tr>
+        </table>
+    </form>
 </script> 
 </head>
 <body>
@@ -88,6 +98,7 @@
      <div class="footer">
          <div id="submit-btn" class="myButton" data-mode="true">Submit</div>
          <div id="cancel-btn" class="myButton-cancel" data-mode="false">Cancel</div>
+         <div id="loading-image"></div>
      </div>
  </div>
    
@@ -101,7 +112,8 @@
          cci.closePupop();
          cci.stroyTitle();
          cci.horizontalSlider('#first-table');
-         cci.newFiledAdd('#story-add','#story-title-add',1,'story-title-add','ADD STORY TITLE');
+         cci.newFiledAdd('#story-add','#story-title-add',1,'story_title','ADD STORY TITLE');
+         cci.form_submit();
       
     });
   
