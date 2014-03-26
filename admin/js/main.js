@@ -44,27 +44,6 @@ global.prototype.loginValidation = function () {
      
 };
 
-global.prototype.loginSubmit  = function(){
-   "use strict";
-   var getAjaxValue,form,data,stringToJson;
-   form           = document.forms.login_form;
-   data           = $(form).serialize();
-   getAjaxValue   =  this.ajax(document.URL+'index.php/admin/login',"POST",data);
-   stringToJson   = getAjaxValue;
-   console.log(stringToJson);
-   if(stringToJson.sucess === false){
-      this.login_error_message.fadeIn(1000);
-      this.login_error_message.html(stringToJson.message);
-      this.login_error_message.delay(2000).fadeOut(1000);
-   }else{
-       document.location = document.URL+'index.php/admin/dashboard';
-   }
-       
-};
-
-/***************************************************************
-              Login Function end point
-****************************************************************/
 global.prototype.ajax  = function(requestUrl,dataType,data){
    "use strict";
    var self  = this,content = null;
@@ -95,6 +74,29 @@ global.prototype.ajax  = function(requestUrl,dataType,data){
     });
    return JSON.parse(content); 
 };
+
+global.prototype.loginSubmit  = function(){
+   "use strict";
+   var getAjaxValue,form,data,stringToJson;
+   form           = document.forms.login_form;
+   data           = $(form).serialize();
+   getAjaxValue   =  this.ajax(document.URL+'index.php/admin/login',"POST",data);
+   stringToJson   = getAjaxValue;
+   console.log(stringToJson);
+   if(stringToJson.sucess === false){
+      this.login_error_message.fadeIn(1000);
+      this.login_error_message.html(stringToJson.message);
+      this.login_error_message.delay(2000).fadeOut(1000);
+   }else{
+       document.location = document.URL+'index.php/admin/dashboard';
+   }
+       
+};
+
+/***************************************************************
+              Login Function end point
+****************************************************************/
+
 
 
 /**************************************************************************
@@ -214,17 +216,18 @@ global.prototype.closePupop    = function(state){
 };
 
 global.prototype.stroyTitle    = function(){
+    var self = this;
     var data,table_conte,content_Holder,tpl_id,html,template;
     table_conte     = $('#first-table');
     content_Holder  = table_conte.find('.horizontal-slider-holder');
-    tpl_id          = $('#stroy-title-list').html();
-    data            = this.ajax(document.URL+'_blogtitle',"POST",null);
+    tpl_id          = $('#stroy-title-list').removeData().html();
+    data            = self.ajax(document.URL+'_blogtitle',"POST",null);
     template        = _.template(tpl_id,contents=data);
     content_Holder.html(template);
    // tpl_id.remove();
 };
 
-global.prototype.newFiledAdd = function(id,templateId,noOfBtn,funCall,title){
+global.prototype.newFiledAdd = function(id,templateId,noOfBtn,funCall,title,funcName){
     var eventBtnId,templateIdVa,template;
     eventBtnId              = $(id);
     templateIdVa            = $(templateId).remove().html();
@@ -234,6 +237,7 @@ global.prototype.newFiledAdd = function(id,templateId,noOfBtn,funCall,title){
     if(noOfBtn === 1){
        this.pupop.find('#submit-btn').show();
        this.pupop.find('#submit-btn').attr('data-add',funCall);
+       this.pupop.find('#submit-btn').attr('data-call',funcName);
     }else{
        this.pupop.find('#submit-btn').show();
        this.pupop.find('#cancel-btn').show();
@@ -241,47 +245,120 @@ global.prototype.newFiledAdd = function(id,templateId,noOfBtn,funCall,title){
     this.showPupop(eventBtnId);
 };
 
+global.prototype.newFiledEdit = function(id,noOfBtn,funCall,title,funcName){
+    var eventBtnId,templateIdVa,template,getValueAttr,getValueAttrToarry,getAjaxVal,data;
+    eventBtnId              = $(id);
+    getValueAttr            = eventBtnId.attr('id');
+    getValueAttrToarry      = getValueAttr.split('_');
+    data                    = { id: getValueAttrToarry[1] };
+    getAjaxVal              = this.ajax(document.URL+'_'+getValueAttrToarry[0],"POST",data);
+    templateIdVa            = $('#story-title-add').removeData().html();
+    template                = _.template(templateIdVa,data=getAjaxVal);
+    this.poupupContainer.html(template);
+    this.pupop.find('.title-name').html(title);
+    if(noOfBtn === 1){
+       this.pupop.find('#submit-btn').show();
+       this.pupop.find('#submit-btn').attr('data-add',funCall);
+       this.pupop.find('#submit-btn').attr('data-call',funcName);
+    }else{
+       this.pupop.find('#submit-btn').show();
+       this.pupop.find('#cancel-btn').show();
+    }
+    this.showPupop(eventBtnId);
+};
+
+
 /*
  * 
  * @param {type} id
  * @returns {undefined}
  */
 global.prototype.form_submit  = function(e){
-    var formName,serData,self = this,request;
+    var formName,serData,self = this,request,funName;
     $('#submit-btn').bind('mousedown',function(e){
        $(this).removeClass('myButton').addClass('myButton-disble');
        $('#loading-image').show();  
        formName     = $(this).attr('data-add');
+       funName      = $(this).attr('data-call');
        serData      = $('#'+formName).serialize();
        self.ajaxLoad(formName);
-       request = self.ajax(document.URL+'_blogtitle',"POST",serData);
-       if(request.sucess === true ){
-           
-       }else{
-           
+       request = self.ajax(document.URL+'_blogtitleadd',"POST",serData);
+       if(request['sucess'] === true){
+            $('#submit-btn').removeClass('myButton-disble').addClass('myButton');
+            $('#'+formName)[0].reset();
+            var fun = eval(funName);
+            self.closePupop('2');
+             $('#story-title-add').removeData()
+            //fun(); 
        }
-      // requestUrl,dataType,data
     });
 };
 
-global.prototype.showPupop  = function(id){
-    var self = this;
-    id.click(function(){
+global.prototype.showPupopAdd  = function(){
+    var self = this,formName,templateId,ajaxUrl,reloadTableFun,splitContent,getDataContent,templateData,callTemplate;
+    $('.add-btn').bind('mousedown',function(){
+        getDataContent = $(this).attr('data-content');
+        splitContent   = getDataContent.split(" ");
+        templateId     = splitContent[0];
+        formName       = splitContent[1];
+        ajaxUrl        = splitContent[2];
+        reloadTableFun = splitContent[3];
+        templateData   = $('#'+templateId).removeData().html();
+        callTemplate   = _.template(templateData,data={});
+        self.pupop.find('#submit-btn').show();
+        self.pupop.find('#submit-btn').attr('data-content',formName+" "+ajaxUrl+" "+reloadTableFun);
         self.pupop.animate({'left':'35%'},500); 
+        self.poupupContainer.html(callTemplate);
         self.overlayId.show();
-     });      
+        self.submit(formName,ajaxUrl,reloadTableFun);
+     });
+    
+};
+global.prototype.showPupopEdit = function(){
+    var getValueAttrToarry,self=this;
+    $('.edit').bind('mousedown',function(){
+    var getCurrent   = $(this).attr('id');
+    getValueAttrToarry      = getCurrent.split('_');
+        dataC                    = { id: getValueAttrToarry[1] };
+   var get               = self.ajax(document.URL+'_'+getValueAttrToarry[0],"POST",dataC);
+   var templateIdVa                = $('#story-title-add').removeData().html();
+    var template                    = _.template(templateIdVa,data = get);
+    self.poupupContainer.html(template);
+    self.pupop.animate({'left':'35%'},500); 
+        self.overlayId.show();
+   // this.pupop.find('.title-name').html(title);
+        
+    });
 };
 
-global.prototype.ajaxLoad = function(form){
+global.prototype.submit    = function(formName,ajaxUrl,reloadTable){
+   
+    var self  = this,formSerialize,getAjaxVal,callFun,url;
+    self.pupop.find('#submit-btn').bind('mousedown',function(){
+        formSerialize     = $('#'+formName).serialize();  
+        url               = ajaxUrl;
+        self.ajaxLoad();
+        getAjaxVal        = self.ajax(document.URL+'_'+url,"POST",formSerialize);
+        if(getAjaxVal['sucess'] === true){
+            $(this).removeClass('myButton-disble').addClass('myButton').removeAttr('data-content');
+            $(this).hide();
+            $('#'+formName)[0].reset();
+            self.closePupop('2');
+             
+           // callFun();
+        }
+    });
+   
+};
+
+global.prototype.ajaxLoad = function(){
   var self = this;
   $(document).ajaxStop(function(e){
     e.preventDefault();
     e.stopPropagation();
     e.stopImmediatePropagation();
-    $('#loading-image').hide();  
-    $('#submit-btn').removeClass('myButton-disble').addClass('myButton');
-    $('#'+form)[0].reset();
-    self.closePupop('2');
+    $('#loading-image').hide(); 
+   
   });  
 };
 
