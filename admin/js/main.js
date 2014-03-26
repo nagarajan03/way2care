@@ -35,7 +35,6 @@ global.prototype.loginValidation = function () {
            e.stopPropagation();
            e.stopImmediatePropagation();
            self.loginSubmit();
-
         });
     }
     else{
@@ -52,11 +51,15 @@ global.prototype.loginSubmit  = function(){
    data           = $(form).serialize();
    getAjaxValue   =  this.ajax(document.URL+'index.php/admin/login',"POST",data);
    stringToJson   = getAjaxValue;
+   console.log(stringToJson);
    if(stringToJson.sucess === false){
       this.login_error_message.fadeIn(1000);
       this.login_error_message.html(stringToJson.message);
       this.login_error_message.delay(2000).fadeOut(1000);
+   }else{
+       document.location = document.URL+'index.php/admin/dashboard';
    }
+       
 };
 
 /***************************************************************
@@ -252,7 +255,11 @@ global.prototype.form_submit  = function(e){
        serData      = $('#'+formName).serialize();
        self.ajaxLoad(formName);
        request = self.ajax(document.URL+'_blogtitle',"POST",serData);
-       
+       if(request.sucess === true ){
+           
+       }else{
+           
+       }
       // requestUrl,dataType,data
     });
 };
