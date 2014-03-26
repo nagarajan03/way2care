@@ -4,6 +4,7 @@ class Adminmodel extends CI_Model{
         parent::__construct();
     }
     public function login_check($username,$password){
+      $admin_session = array();
       $this->db->where('username',$username);
       $this->db->where('password',MD5($password));
       $this->db->select('*');
@@ -12,7 +13,7 @@ class Adminmodel extends CI_Model{
 		foreach($result->result() as $row)
 		{
 		$admin_session['admin_username']=$row->username;
-		$admin_session['admin_id']=$row->admin_id;
+		$admin_session['admin_id']=$row->id;
 		}
 		return $admin_session; 
 	}
@@ -23,5 +24,8 @@ class Adminmodel extends CI_Model{
     public function blogTitleContentModel(){
        $query = $this->db->query("SELECT * FROM blog_title WHERE status = '1' AND del = '1' ORDER BY time DESC");
        return $query->result();
+    }
+    public function storyTitleAdd($titleName,$status){
+       $query = $this->db->query("SELECT * FROM blog_title WHERE status = '1' AND del = '1' ORDER BY time DESC");
     }
 }

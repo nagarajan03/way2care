@@ -19,12 +19,15 @@ class Admin extends CI_Controller{
         if($login_check){
           $session_data=array('session_data'=>$login_check['admin_username'],'session_id'=>$login_check['admin_id']);
           $this->session->set_userdata($session_data);
+          $messsage['sucess'] = true;
+          $messsage['message'] = "Invalid Username or Password";
+          
         }else{
           $messsage['sucess'] = false;
           $messsage['message'] = "Invalid Username or Password";
-          print json_encode($messsage);  
+           
         }
-       
+       print json_encode($messsage);    
      }
      public function dashboard(){
          $data      = array();
