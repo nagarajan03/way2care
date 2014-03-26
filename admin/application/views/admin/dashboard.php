@@ -36,7 +36,7 @@
         <div id="sliderHolder">
             <div class="main-content">
                
-                <div class="table-content" id="first-table"><div class="title">STORY TITLE</div>
+                <div class="table-content" id="first-table"><div class="title">Story Title</div>
                     <div class="header">
                         <div class="add-btn" id="story-add"></div>
                     </div>
