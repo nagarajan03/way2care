@@ -79,8 +79,94 @@
                     </div>
                 </div>
             </div>
-          <div class="main-content" id="page-2">Content 2</div>
-          <div class="main-content" id="page-3">Content 3</div>
+          <div class="main-content" id="page-2">
+          <div class="table-content" id="first-table"><div class="title">Story Title</div>
+                    <div class="header">
+                        <div class="add-btn" id="story-add"></div>
+                    </div>
+                    <div class="main-table-content" id="page-1">
+                       <div class="horizontal-slider-holder">
+                            <script type="text/template" id="stroy-title-list">
+                                
+                                 <% var i= 1;_.each(contents,function(content){  %>
+                                     <table class="table-1" border="0" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                              <th width="20">S.No</th>
+                                              <th>Story Title</th>
+                                              <th width="150">Status</th>
+                                              <th width="20"></th>
+                                              <th width="20"></th>
+                                            </tr> 
+                                          <% _.each(content,function(contentVal){ %> 
+                                             <tr>
+                                                <td><%= i++ %></td>
+                                                <td><%= contentVal['title'] %></td>
+                                                <td><%= (contentVal['status'] =1)? "Active":"Inactive" %></td>
+                                                <td><div class="edit" id="blog_<%= contentVal['id'] %>"></div></td>
+                                                <td><div class="delete" id="blog_<%= contentVal['id'] %>"></div></td>
+                                             </tr>
+                                          <% }) %>
+                                     </table>
+                                 <% }) %>
+                              
+                               
+                          </script>
+                          
+                       </div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <div class="footer">
+                        <div class="next-pre-btn">
+                            <div class="prev-btn"></div>
+                            <div class="next-btn"></div>
+                        </div>
+                    </div>
+                </div>
+          </div>
+          <div class="main-content" id="page-3">
+          <div class="table-content" id="first-table"><div class="title">Story Title</div>
+                    <div class="header">
+                        <div class="add-btn" id="story-add"></div>
+                    </div>
+                    <div class="main-table-content" id="page-1">
+                       <div class="horizontal-slider-holder">
+                            <script type="text/template" id="stroy-title-list">
+                                
+                                 <% var i= 1;_.each(contents,function(content){  %>
+                                     <table class="table-1" border="0" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                              <th width="20">S.No</th>
+                                              <th>Story Title</th>
+                                              <th width="150">Status</th>
+                                              <th width="20"></th>
+                                              <th width="20"></th>
+                                            </tr> 
+                                          <% _.each(content,function(contentVal){ %> 
+                                             <tr>
+                                                <td><%= i++ %></td>
+                                                <td><%= contentVal['title'] %></td>
+                                                <td><%= (contentVal['status'] =1)? "Active":"Inactive" %></td>
+                                                <td><div class="edit" id="blog_<%= contentVal['id'] %>"></div></td>
+                                                <td><div class="delete" id="blog_<%= contentVal['id'] %>"></div></td>
+                                             </tr>
+                                          <% }) %>
+                                     </table>
+                                 <% }) %>
+                              
+                               
+                          </script>
+                          
+                       </div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <div class="footer">
+                        <div class="next-pre-btn">
+                            <div class="prev-btn"></div>
+                            <div class="next-btn"></div>
+                        </div>
+                    </div>
+                </div>
+          </div>
          
         </div>
       </div>
