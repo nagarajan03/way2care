@@ -6,12 +6,12 @@
 <link rel="stylesheet" href="<?php echo base_url();?>css/style.css" type="text/css" />
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/underscore-min.js"></script>
-<script type="text/template" id="story-title-add">
+<script type="text/template" id="story-title-add" class="hide">
     <form name="story_title" id="story_title">
         <table border="0" cellpadding="0" cellspacing="5" class="table-2">
           <tr>
              <td>Story Title</td>
-             <td><input type="text" name="story_title" id="story_title"/></td>
+             <td><input type="text" name="story_title" id="story_title" value=<% if(!(_.isEmpty(data))){ %> <%= data[0]['blog_title'] %>  <% } %> ></td>
           </tr>
            <tr>
              <td>Status</td>
@@ -20,6 +20,7 @@
         </table>
     </form>
 </script> 
+
 </head>
 <body>
   <div id="warapper">
@@ -38,7 +39,7 @@
                
                 <div class="table-content" id="first-table"><div class="title">Story Title</div>
                     <div class="header">
-                        <div class="add-btn" id="story-add"></div>
+                        <div class="add-btn" id="story-add" data-content = "story-title-add story_title blogtitleadd self.stroyTitle()"></div>
                     </div>
                     <div class="main-table-content" id="page-1">
                        <div class="horizontal-slider-holder">
@@ -58,7 +59,7 @@
                                                 <td><%= i++ %></td>
                                                 <td><%= contentVal['title'] %></td>
                                                 <td><%= (contentVal['status'] =1)? "Active":"Inactive" %></td>
-                                                <td><div class="edit" id="blog_<%= contentVal['id'] %>"></div></td>
+                                                <td><div class="edit" data-content="" id="storyTitleEdit_<%= contentVal['id'] %>"></div></td>
                                                 <td><div class="delete" id="blog_<%= contentVal['id'] %>"></div></td>
                                              </tr>
                                           <% }) %>
@@ -80,13 +81,13 @@
                 </div>
             </div>
           <div class="main-content" id="page-2">
-          <div class="table-content" id="first-table"><div class="title">Story Title</div>
+          <div class="table-content" id="first-table-2"><div class="title">Story Title</div>
                     <div class="header">
-                        <div class="add-btn" id="story-add"></div>
+                        <div class="add-btn" id="story-add" data-tpl='story-title-add' data-form='story-form'></div>
                     </div>
                     <div class="main-table-content" id="page-1">
                        <div class="horizontal-slider-holder">
-                            <script type="text/template" id="stroy-title-list">
+                            <script type="text/template" id="stroy-title-list-5">
                                 
                                  <% var i= 1;_.each(contents,function(content){  %>
                                      <table class="table-1" border="0" cellpadding="0" cellspacing="0">
@@ -124,13 +125,13 @@
                 </div>
           </div>
           <div class="main-content" id="page-3">
-          <div class="table-content" id="first-table"><div class="title">Story Title</div>
+          <div class="table-content" id="first-table-2"><div class="title">Story Title</div>
                     <div class="header">
                         <div class="add-btn" id="story-add"></div>
                     </div>
                     <div class="main-table-content" id="page-1">
                        <div class="horizontal-slider-holder">
-                            <script type="text/template" id="stroy-title-list">
+                            <script type="text/template" id="stroy-title-list-2">
                                 
                                  <% var i= 1;_.each(contents,function(content){  %>
                                      <table class="table-1" border="0" cellpadding="0" cellspacing="0">
@@ -194,14 +195,14 @@
 <script type="text/javascript" src="<?php echo base_url();?>js/main.js"></script>
 <script>
     $(document).ready(function (){
-     
+       
          cci.sliderContent();
          cci.closePupop(1);
          cci.stroyTitle();
          cci.horizontalSlider('#first-table');
-         cci.newFiledAdd('#story-add','#story-title-add',1,'story_title','ADD STORY TITLE');
-         cci.form_submit();
-      
+         cci.showPupopAdd();
+        // cci.newFiledEdit('.edit',2,'story_title','EDIT STORY TITLE','self.stroyTitle');
+        cci.showPupopEdit();
     });
   
 </script>

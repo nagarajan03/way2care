@@ -25,7 +25,28 @@ class Adminmodel extends CI_Model{
        $query = $this->db->query("SELECT * FROM blog_title WHERE status = '1' AND del = '1' ORDER BY time DESC");
        return $query->result();
     }
-    public function storyTitleAdd($titleName,$status){
-       $query = $this->db->query("SELECT * FROM blog_title WHERE status = '1' AND del = '1' ORDER BY time DESC");
+    public function storyTitleAdd($titleName,$status,$user_id){
+       $query = $this->db->query("INSERT INTO blog_title(blog_title_id,blog_title,status,del,login_id,time)VALUES(NULL,'$titleName',$status,1,$user_id,now())");
+       if($query){
+          return true;
+       }else{
+           return false;
+       }
+    }
+    public function getuserName($username){
+        $this->db->where('username',$username);
+        $this->db->select('id,username');
+        $result=$this->db->get('login');
+         return $result->result();
+    }
+    public function storyBoardEdit($id,$data){
+        $this->db->where('id', $id);
+        $this->db->update('blog_title' ,$data);
+    }
+    public function getStoryTitle($id){
+        $this->db->where('blog_title_id',$id);
+        $this->db->select('*');
+        $result = $this->db->get('blog_title');
+        return $result->result();
     }
 }
