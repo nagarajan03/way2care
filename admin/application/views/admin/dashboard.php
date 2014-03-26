@@ -7,7 +7,7 @@
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/underscore-min.js"></script>
 <script type="text/template" id="story-title-add">
-    <form name="story_title">
+    <form name="story_title" id="story_title">
         <table border="0" cellpadding="0" cellspacing="5" class="table-2">
           <tr>
              <td>Story Title</td>
@@ -39,7 +39,7 @@
                     <div class="header">
                         <div class="add-btn" id="story-add"></div>
                     </div>
-                    <div class="main-table-content">
+                    <div class="main-table-content" id="page-1">
                        <div class="horizontal-slider-holder">
                             <script type="text/template" id="stroy-title-list">
                                 
@@ -78,8 +78,8 @@
                     </div>
                 </div>
             </div>
-          <div class="main-content">Content 2</div>
-          <div class="main-content">Content 3</div>
+          <div class="main-content" id="page-2">Content 2</div>
+          <div class="main-content" id="page-3">Content 3</div>
          
         </div>
       </div>
