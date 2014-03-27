@@ -121,7 +121,10 @@ class Admin extends CI_Controller{
           }else{
            $message['sucess'] = false;  
           }
-         print(json_encode($message ));  
+         print(json_encode($message));  
      }
-     
+     public function dashboard_blogContenttitlelist(){
+	 $stat  =$this->adminModel->blogContenttitlelist();
+	 print(json_encode($stat));
+	 }
 }
