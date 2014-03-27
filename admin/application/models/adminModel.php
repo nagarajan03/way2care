@@ -22,7 +22,7 @@ class Adminmodel extends CI_Model{
 	}  
     }
     public function blogTitleContentModel(){
-       $query = $this->db->query("SELECT * FROM blog_title WHERE status = '1' AND del = '1' ORDER BY time DESC");
+       $query = $this->db->query("SELECT * FROM blog_title WHERE  del = '1' ORDER BY time DESC");
        return $query->result();
     }
     public function storyTitleAdd($titleName,$status,$user_id){
@@ -40,8 +40,9 @@ class Adminmodel extends CI_Model{
          return $result->result();
     }
     public function storyBoardEdit($id,$data){
-        $this->db->where('id', $id);
-        $this->db->update('blog_title' ,$data);
+        $this->db->where('blog_title_id', $id);
+        $result = $this->db->update('blog_title' ,$data);
+        return $result;
     }
     public function getStoryTitle($id){
         $this->db->where('blog_title_id',$id);
@@ -49,4 +50,10 @@ class Adminmodel extends CI_Model{
         $result = $this->db->get('blog_title');
         return $result->result();
     }
+    public function storyTitleDelete($id){
+        $this->db->where('blog_title_id',$id);
+        $result = $this->db->delete('blog_title');
+        return $result;
+    }
+    
 }
