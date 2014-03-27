@@ -50,6 +50,10 @@ class Adminmodel extends CI_Model{
         $result = $this->db->get('blog_title');
         return $result->result();
     }
+	 public function blogContentModel(){
+       $query = $this->db->query("SELECT blog.*,blog_title.* FROM blog_title INNER JOIN blog ON blog_title.blog_title_id =  blog.blog_id order BY time DESC");
+       return $query->result();
+    }
     public function storyTitleDelete($id){
         $this->db->where('blog_title_id',$id);
         $result = $this->db->delete('blog_title');
