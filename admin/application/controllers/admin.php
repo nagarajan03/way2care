@@ -80,8 +80,8 @@ class Admin extends CI_Controller{
                 'id'     => $value->id,
                 'title'  => $value->blog_title,
                 'content_status' => $value->content_status,
-				'img' =>$value->img,
-				'content' => $value->content
+	        'img' =>$value->img,
+		'content' => substr($value->content,0,50)."..."
             ); 
             if($i === $j){
                 $i = $i+5;
@@ -124,7 +124,15 @@ class Admin extends CI_Controller{
          print(json_encode($message));  
      }
      public function dashboard_blogContenttitlelist(){
-	 $stat  =$this->adminModel->blogContenttitlelist();
+	 $stat  = $this->adminModel->blogContenttitlelist();
 	 print(json_encode($stat));
-	 }
+         
+     }
+     public function dashboard_blogContenttitleAdd(){
+         $storyTitle      = $_POST['storyTitle'];
+         $StoryContent    = $_POST['story_content'];
+         $images          = $_FILES['image'];
+         $status          = $_POST['status'];
+         print($images);
+     }
 }

@@ -1,7 +1,7 @@
 /*
  * global,this;
  */
-var cci;
+var cci,cci_page_2;
 var global = function () {
     this.name                 = "global";
     this.overlayId            = $('#overlay');
@@ -61,6 +61,7 @@ global.prototype.ajax  = function(requestUrl,dataType,data){
             });
             return xhr;
         }, 
+        
         type: dataType, 
         url: requestUrl,
         data:data,
@@ -93,11 +94,6 @@ global.prototype.loginSubmit  = function(){
    }
        
 };
-
-/***************************************************************
-              Login Function end point
-****************************************************************/
-
 
 
 /**************************************************************************
@@ -171,7 +167,7 @@ global.prototype.horizontalSlider  = function(id,Reload){
        e.stopImmediatePropagation();
        self.increamentVa++;
        //slider animation form left
-        _silderHolder.animate({'margin-left':-self.increamentVa*_widthTable+'px'},1000);
+        _silderHolder.stop().animate({'margin-left':-self.increamentVa*_widthTable+'px'},1000);
        //Hide next button
         if(self.increamentVa === _total-1){
            $(this).css({'visibility':'hidden'});
@@ -188,7 +184,7 @@ global.prototype.horizontalSlider  = function(id,Reload){
        e.stopImmediatePropagation();
        self.increamentVa--;
       //slider animation for pervious button
-        _silderHolder.animate({'margin-left':-self.increamentVa*_widthTable+'px'},1000);
+        _silderHolder.stop().animate({'margin-left':-self.increamentVa*_widthTable+'px'},1000);
       //Hide previous button
        if(self.increamentVa === 0){
            $(this).css({'visibility':'hidden'});
@@ -200,7 +196,7 @@ global.prototype.horizontalSlider  = function(id,Reload){
        
     });
     if(Reload){
-         _silderHolder.animate({'margin-left':'0px'},1000);
+         _silderHolder.stop().animate({'margin-left':'0px'},1000);
          idOrClass.find(this.prvBtn).css({'visibility':'hidden'});
     }
 };
@@ -255,8 +251,34 @@ global.prototype.stroyTitle    = function(ini){
     }
 };
 
+
+global.prototype.stroyTitleContent    = function(ini){
+    var self = this;
+    var data,table_conte,content_Holder,tpl_id,html,template;
+    if(ini === true){
+        table_conte     = $('#first-table-2');
+        content_Holder  = table_conte.find('.horizontal-slider-holder');
+        tpl_id          = $('#stroy-title-list-2').removeData().html();
+        data            = self.ajax(document.URL+'_blogcontentlist',"POST",null);
+        template        = _.template(tpl_id,contents=data);
+        content_Holder.html(template);
+    }else{
+        table_conte     = $('#first-table-2');
+        content_Holder  = table_conte.find('.horizontal-slider-holder');
+        tpl_id          = $('#stroy-title-list-2').removeData().html();
+        data            = self.ajax(document.URL+'_blogtitle',"POST",null);
+        template        = _.template(tpl_id,contents=data);
+        content_Holder.html(template);
+        self.increamentVa = 0;
+        self.horizontalSlider('#first-table-2',true);
+        self.showPupopDelete();
+        self.showPupopEdit();
+    }
+};
+
+
 global.prototype.showPupopAdd  = function(){
-    var self = this,formName,templateId,ajaxUrl,reloadTableFun,splitContent,getDataContent,templateData,callTemplate;
+    var self = this,formName,templateId,ajaxUrl,reloadTableFun,splitContent,getDataContent,templateData,callTemplate,title,getContent,getAjxVal,ajxurl,dataCo;
     $('.add-btn').bind('mousedown',function(){
         getDataContent = $(this).attr('data-content');
         splitContent   = getDataContent.split(" ");
@@ -264,21 +286,31 @@ global.prototype.showPupopAdd  = function(){
         formName       = splitContent[1];
         ajaxUrl        = splitContent[2];
         reloadTableFun = splitContent[3];
+        title          = splitContent[4].replace(/_/g, " ");
+        getContent     = splitContent[5];
+        if(getContent === 'true'){
+            ajxurl     = splitContent[6];
+            getAjxVal  = self.ajax(document.URL+'_'+ajxurl,"POST",null); 
+            dataCo     = getAjxVal;
+           
+        }else{
+            dataCo     = {};
+        }
         templateData   = $('#'+templateId).removeData().html();
-        callTemplate   = _.template(templateData,data={});
+        callTemplate   = _.template(templateData,data=dataCo); 
         self.pupop.find('#submit-btn').show();
         self.pupop.find('#submit-btn').attr('data-content',formName+" "+ajaxUrl+" "+reloadTableFun);
         self.pupop.animate({'left':'35%'},500); 
         self.poupupContainer.html(callTemplate);
+        self.pupop .find('.title-name').html(title);
         self.overlayId.show();
         self.submit();
-        
      });
     
 };
 
 global.prototype.showPupopEdit = function(){
-    var getValueAttrToarry,self=this,getCurrent,editID,getAjaxVal,templateIdVa,template,formName,templateId,reloadTable,getDataCon,toArrayContent,ajaxUrl;
+    var getValueAttrToarry,self=this,getCurrent,editID,getAjaxVal,templateIdVa,template,formName,templateId,reloadTable,getDataCon,toArrayContent,ajaxUrl,title;
     $('.edit').bind('mousedown',function(){
         getCurrent              = $(this).attr('id');
         getValueAttrToarry      = getCurrent.split('_');
@@ -288,6 +320,7 @@ global.prototype.showPupopEdit = function(){
         formName                = toArrayContent[1];
         reloadTable             = toArrayContent[2];
         ajaxUrl                 = toArrayContent[3];
+        title                   = toArrayContent[4].replace(/_/g, " ");
         editID                  = { id: getValueAttrToarry[1] };
         getAjaxVal              = self.ajax(document.URL+'_'+getValueAttrToarry[0],"POST",editID);
         templateIdVa            = $('#'+templateId).removeData().html();
@@ -295,6 +328,7 @@ global.prototype.showPupopEdit = function(){
         self.poupupContainer.html(template);
         self.pupop.animate({'left':'35%'},500); 
         self.overlayId.show();
+        self.pupop.find('.title-name').html(title);
         self.pupop.find('#submit-btn').show();
         self.pupop.find('#submit-btn').attr('data-content',formName+" "+ajaxUrl+" "+reloadTable);
         self.submit();  
@@ -315,13 +349,12 @@ global.prototype.showPupopDelete  = function(){
         data              = {'id':deleteId}
         getAjaxVal        = self.ajax(document.URL+'_'+ajaxUrl,"POST",data);
         if(getAjaxVal['sucess']){
-            $(this).parent().parent().hide('2000');
+          $(this).parent().parent().hide('2000');
         }
     });
 };
 
 global.prototype.submit    = function(){
-   
     var self  = this,formSerialize,getAjaxVal,callFun,url,formName,ajaxUrl,reloadTable,getDataContent,toArrayData;
     self.pupop.find('#submit-btn').bind('mousedown',function(e){
         e.preventDefault();
@@ -332,7 +365,9 @@ global.prototype.submit    = function(){
         formName          = toArrayData[0];
         ajaxUrl           = toArrayData[1];
         reloadTable       = toArrayData[2];
+        console.log(formName)
         formSerialize     = $('#'+formName).serialize();  
+        console.log(formSerialize);
         url               = ajaxUrl;
         self.ajaxLoad();
         getAjaxVal        = self.ajax(document.URL+'_'+url,"POST",formSerialize);
@@ -363,4 +398,5 @@ global.prototype.ajaxLoad = function(){
 /**************************************************************
  *            Window load event
  *************************************************************/
- cci = new global();
+ cci        = new global();
+ cci_page_2 = new global();
