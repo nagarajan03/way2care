@@ -69,6 +69,28 @@ class Admin extends CI_Controller{
          $getValue = $this->adminModel->getStoryTitle($id);
          print(json_encode($getValue ));  
      }
+ 
+     public function dashboard_blogcontentlist(){
+		  $data     = array();
+         $i        = 5;
+         $j        = 1;
+         $getVal   = $this->adminModel->blogContentModel();
+         foreach ($getVal as $value){
+            $data[$i][]   = array(
+                'id'     => $value->id,
+                'title'  => $value->blog_title,
+                'content_status' => $value->content_status,
+				'img' =>$value->img,
+				'content' => $value->content
+            ); 
+            if($i === $j){
+                $i = $i+5;
+            }
+            $j++;
+         }
+         print(json_encode($data));
+	 }
+
      public function dashboard_storyTitleUpdate(){
          $storyTitle   = trim($_POST['story_title']);
          $id           = trim($_POST['id']);
