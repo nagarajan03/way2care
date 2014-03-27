@@ -5,22 +5,30 @@
 <title>CC Dashboard</title>
 <link rel="stylesheet" href="<?php echo base_url();?>css/style.css" type="text/css" />
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>js/underscore-min.js"></script>
-<script type="text/template" id="story-title-add" class="hide">
-    <form name="story_title" id="story_title">
-        <table border="0" cellpadding="0" cellspacing="5" class="table-2">
-          <tr>
-             <td>Story Title</td>
-             <td><input type="text" name="story_title" id="story_title" value=<% if(!(_.isEmpty(data))){ %> <%= data[0]['blog_title'] %>  <% } %> ></td>
-          </tr>
+<script type="text/javascript" src="<?php echo base_url();?>js/underscore-min.js"></script> 
+<script type="text/template" id="stroy-title-list">
+<% var i= 1;_.each(contents,function(content){  %>
+    <table class="table-1" border="0" cellpadding="0" cellspacing="0">
            <tr>
-             <td>Status</td>
-             <td><select name="status" id="status"><option value="1">Active</option><option value="0">Inactive</option></select></td>
-          </tr>
-        </table>
-    </form>
-</script> 
-
+             <th width="20">S.No</th>
+             <th>Story Title</th>
+             <th width="150">Status</th>
+             <th width="20"></th>
+             <th width="20"></th>
+           </tr> 
+         <% _.each(content,function(contentVal){ %> 
+            <tr>
+               <td><%= i++ %></td>
+               <td><%= contentVal['title'] %></td>
+               <td><%= (contentVal['status'] =1)? "Active":"Inactive" %></td>
+               <td><div class="edit" data-content="story-title-add story_title self.stroyTitle(false)" id="storyTitleEdit_<%= contentVal['id'] %>"></div></td>
+               <td><div class="delete" id="blog_<%= contentVal['id'] %>"></div></td>
+            </tr>
+         <% }) %>
+    </table>
+<% }) %>                      
+</script>
+                          
 </head>
 <body>
   <div id="warapper">
@@ -39,36 +47,11 @@
                
                 <div class="table-content" id="first-table"><div class="title">Story Title</div>
                     <div class="header">
-                        <div class="add-btn" id="story-add" data-content = "story-title-add story_title blogtitleadd self.stroyTitle()"></div>
+                        <div class="add-btn" id="story-add" data-content = "story-title-add story_title blogtitleadd self.stroyTitle(false)"></div>
                     </div>
                     <div class="main-table-content" id="page-1">
                        <div class="horizontal-slider-holder">
-                            <script type="text/template" id="stroy-title-list">
-                                
-                                 <% var i= 1;_.each(contents,function(content){  %>
-                                     <table class="table-1" border="0" cellpadding="0" cellspacing="0">
-                                            <tr>
-                                              <th width="20">S.No</th>
-                                              <th>Story Title</th>
-                                              <th width="150">Status</th>
-                                              <th width="20"></th>
-                                              <th width="20"></th>
-                                            </tr> 
-                                          <% _.each(content,function(contentVal){ %> 
-                                             <tr>
-                                                <td><%= i++ %></td>
-                                                <td><%= contentVal['title'] %></td>
-                                                <td><%= (contentVal['status'] =1)? "Active":"Inactive" %></td>
-                                                <td><div class="edit" data-content="" id="storyTitleEdit_<%= contentVal['id'] %>"></div></td>
-                                                <td><div class="delete" id="blog_<%= contentVal['id'] %>"></div></td>
-                                             </tr>
-                                          <% }) %>
-                                     </table>
-                                 <% }) %>
-                              
-                               
-                          </script>
-                          
+                           
                        </div>
                     </div>
                     <div style="clear:both;"></div>
@@ -198,12 +181,25 @@
        
          cci.sliderContent();
          cci.closePupop(1);
-         cci.stroyTitle();
-         cci.horizontalSlider('#first-table');
+         cci.stroyTitle(true);
+         cci.horizontalSlider('#first-table',false);
          cci.showPupopAdd();
-        // cci.newFiledEdit('.edit',2,'story_title','EDIT STORY TITLE','self.stroyTitle');
-        cci.showPupopEdit();
+         cci.showPupopEdit();
     });
   
 </script>
 
+<script type="text/template" id="story-title-add">
+    <form name="story_title" id="story_title">
+        <table border="0" cellpadding="0" cellspacing="5" class="table-2">
+          <tr>
+             <td>Story Title</td>
+             <td><input type="text" name="story_title" id="story_title" value=<% if(!(_.isEmpty(data))){ %> <%= data[0]['blog_title'] %>  <% } %> ></td>
+          </tr>
+           <tr>
+             <td>Status</td>
+             <td><select name="status" id="status"><option value="1">Active</option><option value="0">Inactive</option></select></td>
+          </tr>
+        </table>
+    </form>
+</script>

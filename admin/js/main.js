@@ -14,6 +14,7 @@ var global = function () {
     this.close                = $('.close');
     this.pupop                = $('#popup-box');
     this.poupupContainer      = this.pupop.find('.popup-container');
+    this.increamentVa         = 0;
 };
 
 /***************************************************************
@@ -143,8 +144,8 @@ global.prototype.sliderContent    = function(){
  * @param {string} id   - Horizontal slider parent container id
  */
 
-global.prototype.horizontalSlider  = function(id){
-    var idOrClass,_widthTable,_total,_silderHolder,increamentVa = 0,self=this;
+global.prototype.horizontalSlider  = function(id,Reload){
+    var idOrClass,_widthTable,_total,_silderHolder,self=this;
     idOrClass           = $(id);
     //get paretnt container width
     _widthTable         = idOrClass.find('.main-table-content').width();
@@ -164,34 +165,44 @@ global.prototype.horizontalSlider  = function(id){
     }
     
     //next button event start here
-    idOrClass.find(this.nextBtn).bind('mousedown',function(){
-       increamentVa++;
+    idOrClass.find(this.nextBtn).bind('mousedown',function(e){
+       e.preventDefault();
+       e.stopPropagation();
+       e.stopImmediatePropagation();
+       self.increamentVa++;
        //slider animation form left
-        _silderHolder.animate({'margin-left':-increamentVa*_widthTable+'px'},1000);
+        _silderHolder.animate({'margin-left':-self.increamentVa*_widthTable+'px'},1000);
        //Hide next button
-        if(increamentVa === _total-1){
+        if(self.increamentVa === _total-1){
            $(this).css({'visibility':'hidden'});
        }
        //show previous button
-       if(increamentVa<=1){
+       if(self.increamentVa<=1){
           idOrClass.find(self.prvBtn).css({'visibility':'visible'});  
        }
     });
     //previous button event trigger here
-    idOrClass.find(this.prvBtn).bind('mousedown',function(){
-       increamentVa--;
+    idOrClass.find(this.prvBtn).bind('mousedown',function(e){
+       e.preventDefault();
+       e.stopPropagation();
+       e.stopImmediatePropagation();
+       self.increamentVa--;
       //slider animation for pervious button
-        _silderHolder.animate({'margin-left':-increamentVa*_widthTable+'px'},1000);
+        _silderHolder.animate({'margin-left':-self.increamentVa*_widthTable+'px'},1000);
       //Hide previous button
-       if(increamentVa === 0){
+       if(self.increamentVa === 0){
            $(this).css({'visibility':'hidden'});
        }
        //Show next button
-       if(increamentVa<=_total){
+       if(self.increamentVa<=_total){
           idOrClass.find(self.nextBtn).css({'visibility':'visible'});  
        }
        
     });
+    if(Reload){
+         _silderHolder.animate({'margin-left':'0px'},1000);
+         idOrClass.find(this.prvBtn).css({'visibility':'hidden'});
+    }
 };
 
 global.prototype.closePupop    = function(state){
@@ -215,15 +226,26 @@ global.prototype.closePupop    = function(state){
     }
 };
 
-global.prototype.stroyTitle    = function(){
+global.prototype.stroyTitle    = function(ini){
     var self = this;
     var data,table_conte,content_Holder,tpl_id,html,template;
-    table_conte     = $('#first-table');
-    content_Holder  = table_conte.find('.horizontal-slider-holder');
-    tpl_id          = $('#stroy-title-list').removeData().html();
-    data            = self.ajax(document.URL+'_blogtitle',"POST",null);
-    template        = _.template(tpl_id,contents=data);
-    content_Holder.html(template);
+    if(ini === true){
+        table_conte     = $('#first-table');
+        content_Holder  = table_conte.find('.horizontal-slider-holder');
+        tpl_id          = $('#stroy-title-list').removeData().html();
+        data            = self.ajax(document.URL+'_blogtitle',"POST",null);
+        template        = _.template(tpl_id,contents=data);
+        content_Holder.html(template);
+    }else{
+        table_conte     = $('#first-table');
+        content_Holder  = table_conte.find('.horizontal-slider-holder');
+        tpl_id          = $('#stroy-title-list').removeData().html();
+        data            = self.ajax(document.URL+'_blogtitle',"POST",null);
+        template        = _.template(tpl_id,contents=data);
+        content_Holder.html(template);
+        self.increamentVa = 0;
+        self.horizontalSlider('#first-table',true);
+    }
    // tpl_id.remove();
 };
 
@@ -267,33 +289,6 @@ global.prototype.newFiledEdit = function(id,noOfBtn,funCall,title,funcName){
     this.showPupop(eventBtnId);
 };
 
-
-/*
- * 
- * @param {type} id
- * @returns {undefined}
- */
-global.prototype.form_submit  = function(e){
-    var formName,serData,self = this,request,funName;
-    $('#submit-btn').bind('mousedown',function(e){
-       $(this).removeClass('myButton').addClass('myButton-disble');
-       $('#loading-image').show();  
-       formName     = $(this).attr('data-add');
-       funName      = $(this).attr('data-call');
-       serData      = $('#'+formName).serialize();
-       self.ajaxLoad(formName);
-       request = self.ajax(document.URL+'_blogtitleadd',"POST",serData);
-       if(request['sucess'] === true){
-            $('#submit-btn').removeClass('myButton-disble').addClass('myButton');
-            $('#'+formName)[0].reset();
-            var fun = eval(funName);
-            self.closePupop('2');
-             $('#story-title-add').removeData()
-            //fun(); 
-       }
-    });
-};
-
 global.prototype.showPupopAdd  = function(){
     var self = this,formName,templateId,ajaxUrl,reloadTableFun,splitContent,getDataContent,templateData,callTemplate;
     $('.add-btn').bind('mousedown',function(){
@@ -314,27 +309,35 @@ global.prototype.showPupopAdd  = function(){
      });
     
 };
+
 global.prototype.showPupopEdit = function(){
-    var getValueAttrToarry,self=this;
+    var getValueAttrToarry,self=this,getCurrent,editID,getAjaxVal,templateIdVa,template,formName,templateId,reloadTable,getDataCon,toArrayContent;
     $('.edit').bind('mousedown',function(){
-    var getCurrent   = $(this).attr('id');
-    getValueAttrToarry      = getCurrent.split('_');
-        dataC                    = { id: getValueAttrToarry[1] };
-   var get               = self.ajax(document.URL+'_'+getValueAttrToarry[0],"POST",dataC);
-   var templateIdVa                = $('#story-title-add').removeData().html();
-    var template                    = _.template(templateIdVa,data = get);
-    self.poupupContainer.html(template);
-    self.pupop.animate({'left':'35%'},500); 
+        getCurrent              = $(this).attr('id');
+        getValueAttrToarry      = getCurrent.split('_');
+        getDataCon              = $(this).attr('data-content');
+        toArrayContent          = getDataCon.split(' ');
+        templateId              = toArrayContent[0];
+        formName                = toArrayContent[1];
+        reloadTable             = toArrayContent[2];
+        editID                  = { id: getValueAttrToarry[1] };
+        getAjaxVal              = self.ajax(document.URL+'_'+getValueAttrToarry[0],"POST",editID);
+        templateIdVa            = $('#'+templateId).removeData().html();
+        template                = _.template(templateIdVa,data = getAjaxVal);
+        self.poupupContainer.html(template);
+        self.pupop.animate({'left':'35%'},500); 
         self.overlayId.show();
-   // this.pupop.find('.title-name').html(title);
-        
+        self.submit(formName,ajaxUrl,reloadTableFun);  
     });
 };
 
 global.prototype.submit    = function(formName,ajaxUrl,reloadTable){
    
     var self  = this,formSerialize,getAjaxVal,callFun,url;
-    self.pupop.find('#submit-btn').bind('mousedown',function(){
+    self.pupop.find('#submit-btn').bind('mousedown',function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
         formSerialize     = $('#'+formName).serialize();  
         url               = ajaxUrl;
         self.ajaxLoad();
@@ -343,9 +346,9 @@ global.prototype.submit    = function(formName,ajaxUrl,reloadTable){
             $(this).removeClass('myButton-disble').addClass('myButton').removeAttr('data-content');
             $(this).hide();
             $('#'+formName)[0].reset();
+            eval(reloadTable);
             self.closePupop('2');
-             
-           // callFun();
+            self.poupupContainer.remove();
         }
     });
    
