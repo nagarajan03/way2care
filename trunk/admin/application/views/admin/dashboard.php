@@ -70,31 +70,7 @@
                     </div>
                     <div class="main-table-content" id="page-1">
                        <div class="horizontal-slider-holder">
-                            <script type="text/template" id="stroy-title-list-5">
                                 
-                                 <% var i= 1;_.each(contents,function(content){  %>
-                                     <table class="table-1" border="0" cellpadding="0" cellspacing="0">
-                                            <tr>
-                                              <th width="20">S.No</th>
-                                              <th>Story Title</th>
-                                              <th width="150">Status</th>
-                                              <th width="20"></th>
-                                              <th width="20"></th>
-                                            </tr> 
-                                          <% _.each(content,function(contentVal){ %> 
-                                             <tr>
-                                                <td><%= i++ %></td>
-                                                <td><%= contentVal['title'] %></td>
-                                                <td><%= (contentVal['status'] =1)? "Active":"Inactive" %></td>
-                                                <td><div class="edit" id="blog_<%= contentVal['id'] %>"></div></td>
-                                                <td><div class="delete" id="blog_<%= contentVal['id'] %>"></div></td>
-                                             </tr>
-                                          <% }) %>
-                                     </table>
-                                 <% }) %>
-                              
-                               
-                          </script>
                           
                        </div>
                     </div>
