@@ -20,9 +20,9 @@
             <tr>
                <td><%= i++ %></td>
                <td><%= contentVal['title'] %></td>
-               <td><%= (contentVal['status'] =1)? "Active":"Inactive" %></td>
-               <td><div class="edit" data-content="story-title-add story_title self.stroyTitle(false)" id="storyTitleEdit_<%= contentVal['id'] %>"></div></td>
-               <td><div class="delete" id="blog_<%= contentVal['id'] %>"></div></td>
+               <td><% if (contentVal['status'] == 1){ %>Active<% }else{ %>Inactive<%} %></td>
+               <td><div class="edit" data-content="story-title-add story_title self.stroyTitle(false) storyTitleUpdate" id="storyTitleEdit_<%= contentVal['id'] %>"></div></td>
+               <td><div class="delete" data-content="self.stroyTitle(false)" id="storyTitleDelete_<%= contentVal['id'] %>"></div></td>
             </tr>
          <% }) %>
     </table>
@@ -185,6 +185,7 @@
          cci.horizontalSlider('#first-table',false);
          cci.showPupopAdd();
          cci.showPupopEdit();
+         cci.showPupopDelete();
     });
   
 </script>
@@ -194,12 +195,13 @@
         <table border="0" cellpadding="0" cellspacing="5" class="table-2">
           <tr>
              <td>Story Title</td>
-             <td><input type="text" name="story_title" id="story_title" value=<% if(!(_.isEmpty(data))){ %> <%= data[0]['blog_title'] %>  <% } %> ></td>
+             <td><input type="text" name="story_title" id="story_title" value="<% if(!(_.isEmpty(data))){ %> <%= data[0]['blog_title'] %>  <% } %>"/ ></td>
           </tr>
            <tr>
              <td>Status</td>
              <td><select name="status" id="status"><option value="1">Active</option><option value="0">Inactive</option></select></td>
           </tr>
         </table>
+        <% if(!(_.isEmpty(data))){ %><input type="hidden" name="id" id="id" value=" <%= data[0]['blog_title_id'] %> "/> <% } %> 
     </form>
 </script>

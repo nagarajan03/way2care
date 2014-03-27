@@ -225,7 +225,12 @@ global.prototype.closePupop    = function(state){
             });   
     }
 };
-
+/*
+ * Story Title list table
+ * @param {boolean} ini  
+ * @returns {undefined}
+ * 
+ */
 global.prototype.stroyTitle    = function(ini){
     var self = this;
     var data,table_conte,content_Holder,tpl_id,html,template;
@@ -245,48 +250,9 @@ global.prototype.stroyTitle    = function(ini){
         content_Holder.html(template);
         self.increamentVa = 0;
         self.horizontalSlider('#first-table',true);
+        self.showPupopDelete();
+        self.showPupopEdit();
     }
-   // tpl_id.remove();
-};
-
-global.prototype.newFiledAdd = function(id,templateId,noOfBtn,funCall,title,funcName){
-    var eventBtnId,templateIdVa,template;
-    eventBtnId              = $(id);
-    templateIdVa            = $(templateId).remove().html();
-    template                = _.template(templateIdVa,data={});
-    this.poupupContainer.html(template);
-    this.pupop.find('.title-name').html(title);
-    if(noOfBtn === 1){
-       this.pupop.find('#submit-btn').show();
-       this.pupop.find('#submit-btn').attr('data-add',funCall);
-       this.pupop.find('#submit-btn').attr('data-call',funcName);
-    }else{
-       this.pupop.find('#submit-btn').show();
-       this.pupop.find('#cancel-btn').show();
-    }
-    this.showPupop(eventBtnId);
-};
-
-global.prototype.newFiledEdit = function(id,noOfBtn,funCall,title,funcName){
-    var eventBtnId,templateIdVa,template,getValueAttr,getValueAttrToarry,getAjaxVal,data;
-    eventBtnId              = $(id);
-    getValueAttr            = eventBtnId.attr('id');
-    getValueAttrToarry      = getValueAttr.split('_');
-    data                    = { id: getValueAttrToarry[1] };
-    getAjaxVal              = this.ajax(document.URL+'_'+getValueAttrToarry[0],"POST",data);
-    templateIdVa            = $('#story-title-add').removeData().html();
-    template                = _.template(templateIdVa,data=getAjaxVal);
-    this.poupupContainer.html(template);
-    this.pupop.find('.title-name').html(title);
-    if(noOfBtn === 1){
-       this.pupop.find('#submit-btn').show();
-       this.pupop.find('#submit-btn').attr('data-add',funCall);
-       this.pupop.find('#submit-btn').attr('data-call',funcName);
-    }else{
-       this.pupop.find('#submit-btn').show();
-       this.pupop.find('#cancel-btn').show();
-    }
-    this.showPupop(eventBtnId);
 };
 
 global.prototype.showPupopAdd  = function(){
@@ -305,13 +271,14 @@ global.prototype.showPupopAdd  = function(){
         self.pupop.animate({'left':'35%'},500); 
         self.poupupContainer.html(callTemplate);
         self.overlayId.show();
-        self.submit(formName,ajaxUrl,reloadTableFun);
+        self.submit();
+        
      });
     
 };
 
 global.prototype.showPupopEdit = function(){
-    var getValueAttrToarry,self=this,getCurrent,editID,getAjaxVal,templateIdVa,template,formName,templateId,reloadTable,getDataCon,toArrayContent;
+    var getValueAttrToarry,self=this,getCurrent,editID,getAjaxVal,templateIdVa,template,formName,templateId,reloadTable,getDataCon,toArrayContent,ajaxUrl;
     $('.edit').bind('mousedown',function(){
         getCurrent              = $(this).attr('id');
         getValueAttrToarry      = getCurrent.split('_');
@@ -320,6 +287,7 @@ global.prototype.showPupopEdit = function(){
         templateId              = toArrayContent[0];
         formName                = toArrayContent[1];
         reloadTable             = toArrayContent[2];
+        ajaxUrl                 = toArrayContent[3];
         editID                  = { id: getValueAttrToarry[1] };
         getAjaxVal              = self.ajax(document.URL+'_'+getValueAttrToarry[0],"POST",editID);
         templateIdVa            = $('#'+templateId).removeData().html();
@@ -327,28 +295,54 @@ global.prototype.showPupopEdit = function(){
         self.poupupContainer.html(template);
         self.pupop.animate({'left':'35%'},500); 
         self.overlayId.show();
-        self.submit(formName,ajaxUrl,reloadTableFun);  
+        self.pupop.find('#submit-btn').show();
+        self.pupop.find('#submit-btn').attr('data-content',formName+" "+ajaxUrl+" "+reloadTable);
+        self.submit();  
     });
 };
 
-global.prototype.submit    = function(formName,ajaxUrl,reloadTable){
+global.prototype.showPupopDelete  = function(){
+    var getDataContent,getId,toArrayGetId,ajaxUrl,deleteId,getAjaxVal,self=this,data;
+    $('.delete').bind('mousedown',function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        getDataContent    = $(this).attr('data-content');
+        getId             = $(this).attr('id');
+        toArrayGetId      = getId.split("_");
+        ajaxUrl           = toArrayGetId[0];
+        deleteId          = toArrayGetId[1];
+        data              = {'id':deleteId}
+        getAjaxVal        = self.ajax(document.URL+'_'+ajaxUrl,"POST",data);
+        if(getAjaxVal['sucess']){
+            $(this).parent().parent().hide('2000');
+        }
+    });
+};
+
+global.prototype.submit    = function(){
    
-    var self  = this,formSerialize,getAjaxVal,callFun,url;
+    var self  = this,formSerialize,getAjaxVal,callFun,url,formName,ajaxUrl,reloadTable,getDataContent,toArrayData;
     self.pupop.find('#submit-btn').bind('mousedown',function(e){
         e.preventDefault();
         e.stopPropagation();
         e.stopImmediatePropagation();
+        getDataContent    = $(this).attr('data-content');
+        toArrayData       = getDataContent.split(" ");
+        formName          = toArrayData[0];
+        ajaxUrl           = toArrayData[1];
+        reloadTable       = toArrayData[2];
         formSerialize     = $('#'+formName).serialize();  
         url               = ajaxUrl;
         self.ajaxLoad();
         getAjaxVal        = self.ajax(document.URL+'_'+url,"POST",formSerialize);
         if(getAjaxVal['sucess'] === true){
-            $(this).removeClass('myButton-disble').addClass('myButton').removeAttr('data-content');
+            $(this).removeClass('myButton-disble').addClass('myButton')
+            $(this).removeAttr('data-content');
             $(this).hide();
             $('#'+formName)[0].reset();
             eval(reloadTable);
             self.closePupop('2');
-            self.poupupContainer.remove();
         }
     });
    

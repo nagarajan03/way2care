@@ -67,7 +67,39 @@ class Admin extends CI_Controller{
      public function dashboard_storyTitleEdit(){
          $id       =  trim($_POST['id']);
          $getValue = $this->adminModel->getStoryTitle($id);
-          print(json_encode($getValue ));  
+         print(json_encode($getValue ));  
+     }
+     public function dashboard_storyTitleUpdate(){
+         $storyTitle   = trim($_POST['story_title']);
+         $id           = trim($_POST['id']);
+         $status       = trim($_POST['status']);
+         $message      = array();
+         $datetime     = date('Y:m:d; H:m:s, time()');
+         $user_id    = $this->adminModel->getuserName($this->session->userdata('admin_username'));
+         $data         = array(
+             'blog_title' => $storyTitle,
+             'status'     => $status,
+             'time'       => $datetime,
+             'login_id'   =>$user_id[0]->id
+         );
+         $getVal       = $this->adminModel->storyBoardEdit($id,$data);
+         if($getVal){
+           $message['sucess'] = true; 
+         }else{
+           $message['sucess'] = false;  
+         }
+         print(json_encode($message ));  
+     }
+     public function dashboard_storyTitleDelete(){
+         $id            = trim($_POST['id']);
+         $message       = array();
+         $getVal        = $this->adminModel->storyTitleDelete($id);
+         if($getVal){
+           $message['sucess'] = true; 
+          }else{
+           $message['sucess'] = false;  
+          }
+         print(json_encode($message ));  
      }
      
 }
